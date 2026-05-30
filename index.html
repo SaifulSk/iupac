@@ -668,11 +668,11 @@
     <div class="header-inner">
       <div class="logo-area">
         <h1>⚗ IUPAC Nomenclature</h1>
-        <p>ICSE Class 10 · Organic Chemistry · 25-Year Question Bank</p>
+        <p>ICSE Class 10 · Organic Chemistry · 25-Year Question Bank · 2025 & 2026 Papers</p>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <span class="badge badge-cyan">200+ Questions</span>
-        <span class="badge badge-purple">1999–2024</span>
+        <span class="badge badge-cyan">224 Questions</span>
+        <span class="badge badge-purple">1999–2026</span>
       </div>
     </div>
   </header>
@@ -720,6 +720,7 @@
         <option value="formula">Formula → Name</option>
       </select>
       <button class="btn-secondary" onclick="resetFilters()">Reset</button>
+      <button class="btn-primary" onclick="newQuestions()" style="padding:9px 18px;font-size:0.82rem">🔀 New Questions</button>
     </div>
 
     <div class="search-wrap">
@@ -2384,6 +2385,106 @@ const QUESTIONS = [
    options:["2,3,4-Trihydroxybutanal","2,3,4-Trihydroxybutanol","Threose","Erythrose"],
    answer:0, hint:"4C; CHO at C1 (principal); OH at C2, C3, C4.",
    explanation:"4C; CHO at C1; OH at C2, C3, and C4 → 2,3,4-Trihydroxybutanal (a tetrose sugar aldehyde)"},
+
+  // ---- ICSE 2025 PAPER ----
+  {id:211, type:"haloalkane", qtype:"formula", diff:"hard", year:"2025",
+   question:"Give the IUPAC name of this compound (from ICSE 2025 Q2(v)):",
+   formula:"Cl₂CH-CHCl₂  (i.e. Cl-Cl on C1 and Cl-Cl on C2)",
+   options:["1,1,2,2-Tetrachloroethane","1,2-Dichloroethane","Trichloroethane","1,1-Dichloroethane"],
+   answer:0, hint:"2C; two Cl atoms on each carbon.",
+   explanation:"2 carbons; 2 Cl on C1 and 2 Cl on C2 → 1,1,2,2-Tetrachloroethane"},
+
+  {id:212, type:"acid", qtype:"formula", diff:"medium", year:"2025",
+   question:"Give the IUPAC name of this compound (ICSE 2025 Q2(v)):",
+   formula:"CH₃-CH₂-CH₂-COOH",
+   options:["Butanoic acid","Propanoic acid","Pentanoic acid","Butanol"],
+   answer:0, hint:"4 carbons, carboxylic acid at C1.",
+   explanation:"4C chain with -COOH at the end → Butanoic acid"},
+
+  {id:213, type:"alkene", qtype:"formula", diff:"medium", year:"2025",
+   question:"Give the IUPAC name for this structure (ICSE 2025 Q2(v)): A 5-carbon chain with a double bond between C2 and C3, and a -CH₃ branch at C2:",
+   formula:"H₃C-C(CH₃)=CH-CH₂-CH₃  (structural from 2025 paper)",
+   options:["2-Methylpent-2-ene","3-Methylpent-2-ene","2-Methylpent-3-ene","Pent-2-ene"],
+   answer:0, hint:"5C parent chain; double bond at C2; methyl substituent at C2.",
+   explanation:"5C parent (pent-2-ene); methyl at C2 → 2-Methylpent-2-ene"},
+
+  {id:214, type:"alkene", qtype:"name", diff:"easy", year:"2025",
+   question:"Draw / identify the structural formula of 2-methylpropene (ICSE 2025 Q2(v)(a)):",
+   formula:"",
+   options:["CH₂=C(CH₃)-CH₃","CH₃-CH=CH-CH₃","CH₂=CH-CH₂-CH₃","CH₃-C≡C-CH₃"],
+   answer:0, hint:"3C parent (propene); methyl at C2 gives a branched alkene.",
+   explanation:"2-Methylpropene: CH₂=C(CH₃)CH₃ — double bond at C1, methyl branch at C2"},
+
+  {id:215, type:"aldehyde", qtype:"name", diff:"easy", year:"2025",
+   question:"Write the structural formula of butanal (ICSE 2025 Q2(v)(a)):",
+   formula:"",
+   options:["CH₃-CH₂-CH₂-CHO","CH₃-CHO","CH₃-CO-CH₃","CH₃-CH₂-CO-CH₃"],
+   answer:0, hint:"But = 4 carbons; -al = aldehyde (-CHO) at C1.",
+   explanation:"Butanal: 4 carbons with aldehyde at C1 → CH₃CH₂CH₂CHO"},
+
+  // ---- ICSE 2026 PAPER ----
+  {id:216, type:"alcohol", qtype:"formula", diff:"medium", year:"2026",
+   question:"Give the IUPAC name (ICSE 2026 Q2(v)(a) — 1): A structure with HO-CH-CH₂-CH₃ and a -CH₃ branch on the carbon bearing -OH:",
+   formula:"HO-CH(CH₃)-CH₂-CH₃",
+   options:["Butan-2-ol","Butan-1-ol","2-Methylpropan-1-ol","Propan-2-ol"],
+   answer:0, hint:"4C chain; -OH at C2.",
+   explanation:"4 carbons; -OH at C2 → Butan-2-ol"},
+
+  {id:217, type:"alkane", qtype:"formula", diff:"medium", year:"2026",
+   question:"Give the IUPAC name (ICSE 2026 Q2(v)(a) — 2): A 5-carbon chain H₃C-CH₂-CH(CH₃)-CH₂-CH₃:",
+   formula:"H₃C-CH₂-CH(CH₃)-CH₂-CH₃",
+   options:["3-Methylpentane","2-Methylpentane","3-Methylbutane","Hexane"],
+   answer:0, hint:"5C longest chain; methyl substituent at C3.",
+   explanation:"5C parent chain (pentane); methyl at C3 → 3-Methylpentane"},
+
+  {id:218, type:"aldehyde", qtype:"name", diff:"easy", year:"2026",
+   question:"Draw / identify the structural formula of butanal (ICSE 2026 Q2(v)(b) — 1):",
+   formula:"",
+   options:["CH₃-CH₂-CH₂-CHO","CH₃-CHO","HCHO","CH₃-CO-CH₃"],
+   answer:0, hint:"But = 4C; -al = -CHO at C1.",
+   explanation:"Butanal: CH₃CH₂CH₂CHO"},
+
+  {id:219, type:"alkyne", qtype:"name", diff:"medium", year:"2026",
+   question:"Write the structural formula of pent-2-yne (ICSE 2026 Q2(v)(b) — 2):",
+   formula:"",
+   options:["CH₃-C≡C-CH₂-CH₃","HC≡C-CH₂-CH₂-CH₃","CH₃-CH₂-C≡C-CH₃","HC≡CH"],
+   answer:0, hint:"5C chain; triple bond starting at C2.",
+   explanation:"Pent-2-yne: 5C with C≡C between C2 and C3 → CH₃C≡CCH₂CH₃"},
+
+  {id:220, type:"alkane", qtype:"name", diff:"easy", year:"2026",
+   question:"Draw the structural formula of the isomer of n-butane (ICSE 2026 Q2(v)(b) — 3):",
+   formula:"",
+   options:["CH₃-CH(CH₃)-CH₃","CH₃-CH₂-CH₂-CH₃","CH₃-CH₂-CH₃","CH₃-C(CH₃)₂-CH₃"],
+   answer:0, hint:"n-Butane is CH₃CH₂CH₂CH₃. Its only structural isomer has a branched 3C chain.",
+   explanation:"The only isomer of n-butane (C₄H₁₀) is 2-methylpropane: CH₃CH(CH₃)CH₃"},
+
+  {id:221, type:"alkene", qtype:"formula", diff:"easy", year:"2026",
+   question:"Which compound is unsaturated (ICSE 2026 Q1(vi))? X = butane, Y = but-1-ene, Z = methane:",
+   formula:"X = CH₃CH₂CH₂CH₃ | Y = CH₂=CH-CH₂-CH₃ | Z = CH₄",
+   options:["Y only","X only","X and Z","Y and Z"],
+   answer:0, hint:"Unsaturated compounds contain at least one C=C or C≡C double/triple bond.",
+   explanation:"Only Y (but-1-ene) contains a C=C double bond and is unsaturated. X and Z are saturated."},
+
+  {id:222, type:"alkane", qtype:"formula", diff:"easy", year:"2025",
+   question:"Which of these molecular formulas represents a saturated hydrocarbon? (ICSE 2025 Q1(ii))",
+   formula:"",
+   options:["C₅H₁₂","C₄H₈","C₄H₆","C₅H₁₀"],
+   answer:0, hint:"Saturated hydrocarbons (alkanes) follow the formula CₙH₂ₙ₊₂.",
+   explanation:"C₅H₁₂ = 5×2+2 = 12 H atoms → satisfies CₙH₂ₙ₊₂ → pentane (saturated alkane)"},
+
+  {id:223, type:"mixed", qtype:"formula", diff:"medium", year:"2025",
+   question:"Which of these is a homologous series? (ICSE 2025 Q1(ix))",
+   formula:"",
+   options:["CH₄, C₂H₆, C₃H₈","CH₄, C₂H₆, C₃H₆","C₃H₄, C₃H₆, C₃H₈","C₂H₄, C₃H₆, C₄H₁₀"],
+   answer:0, hint:"A homologous series follows one general formula; each member differs by CH₂.",
+   explanation:"CH₄, C₂H₆, C₃H₈ all follow CₙH₂ₙ₊₂ (alkane series). Each differs by CH₂."},
+
+  {id:224, type:"alkyne", qtype:"formula", diff:"medium", year:"2025",
+   question:"An unsaturated hydrocarbon has 3 carbon atoms and 6 hydrogen atoms. It is: (ICSE 2025 Q1(xiii) type)",
+   formula:"C₃H₆",
+   options:["Propene","Propyne","Propane","Propanol"],
+   answer:0, hint:"C₃H₆ fits CₙH₂ₙ — the alkene series (one double bond).",
+   explanation:"C₃H₆ = propene (3C, one C=C double bond). Propyne would be C₃H₄; propane is C₃H₈."},
 ];
 
 // ============================================================
@@ -2391,6 +2492,23 @@ const QUESTIONS = [
 // ============================================================
 let practiceAnswers = {}; // {qId: {selected, correct}}
 let filteredQs = [...QUESTIONS];
+let activeQs = []; // current 10 shown in practice
+let shuffledOptionsMap = {}; // {qid: {options, answer}}
+
+function shuffleOptions(q) {
+  const indices = [0,1,2,3];
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  return { options: indices.map(i => q.options[i]), answer: indices.indexOf(q.answer) };
+}
+
+function getShuffled(q) {
+  if (!shuffledOptionsMap[q.id]) shuffledOptionsMap[q.id] = shuffleOptions(q);
+  return shuffledOptionsMap[q.id];
+}
+
 let quizState = {
   questions: [],
   current: 0,
@@ -2435,7 +2553,14 @@ function applyFilters() {
     return true;
   });
 
+  // Clear answers/shuffle for old set, pick fresh 10
+  activeQs.forEach(q => {
+    delete practiceAnswers[q.id];
+    delete shuffledOptionsMap[q.id];
+  });
+  pickActiveQs();
   renderPractice();
+  updatePracticeStats();
 }
 
 function resetFilters() {
@@ -2446,27 +2571,53 @@ function resetFilters() {
   applyFilters();
 }
 
+function newQuestions() {
+  activeQs.forEach(q => {
+    delete practiceAnswers[q.id];
+    delete shuffledOptionsMap[q.id];
+  });
+  pickActiveQs();
+  renderPractice();
+  updatePracticeStats();
+}
+
+function pickActiveQs() {
+  const pool = [...filteredQs].sort(() => Math.random() - 0.5);
+  activeQs = pool.slice(0, 10);
+  activeQs.forEach(q => { shuffledOptionsMap[q.id] = shuffleOptions(q); });
+}
+
+function updatePracticeStats() {
+  const attempted = Object.keys(practiceAnswers).length;
+  const correctCount = Object.values(practiceAnswers).filter(x => x.correct).length;
+  const wrongCount = attempted - correctCount;
+  document.getElementById('stat-total').textContent = attempted;
+  document.getElementById('stat-correct').textContent = correctCount;
+  document.getElementById('stat-wrong').textContent = wrongCount;
+  document.getElementById('stat-pct').textContent = attempted ? Math.round(correctCount/attempted*100)+'%' : '—';
+}
+
 function renderPractice() {
   const container = document.getElementById('practice-list');
-  if (!filteredQs.length) {
+  if (!activeQs.length) {
     container.innerHTML = `<div class="empty-state"><div class="emoji">🔬</div><p>No questions match your filters.</p></div>`;
     return;
   }
-
-  container.innerHTML = filteredQs.map(q => buildQCard(q, 'practice')).join('');
+  container.innerHTML = activeQs.map(q => buildQCard(q, 'practice')).join('');
 }
 
 function buildQCard(q, mode) {
   const state = practiceAnswers[q.id];
+  const sh = getShuffled(q); // {options, answer}
   const cardClass = state ? (state.correct ? 'answered-correct' : 'answered-wrong') : '';
   const diffDot = `<span class="difficulty-dot diff-${q.diff}"></span>`;
   const typeClass = `tag-${q.type}`;
   const qtypeLabel = {name:'Name→Structure', structure:'Structure→Name', formula:'Formula→Name'}[q.qtype] || q.qtype;
 
-  const optionsHTML = q.options.map((opt, i) => {
+  const optionsHTML = sh.options.map((opt, i) => {
     let cls = 'opt-btn';
     if (state) {
-      if (i === q.answer) cls += ' correct';
+      if (i === sh.answer) cls += ' correct';
       else if (i === state.selected) cls += ' wrong';
     }
     return `<button class="${cls}" 
@@ -2478,7 +2629,7 @@ function buildQCard(q, mode) {
   }).join('');
 
   const feedbackClass = state ? (state.correct ? 'feedback correct show' : 'feedback wrong show') : 'feedback';
-  const feedbackMsg = state ? (state.correct ? `✓ Correct! ${q.explanation}` : `✗ Correct answer: ${q.options[q.answer]}. ${q.explanation}`) : '';
+  const feedbackMsg = state ? (state.correct ? `✓ Correct! ${q.explanation}` : `✗ Correct answer: ${sh.options[sh.answer]}. ${q.explanation}`) : '';
 
   return `
   <div class="q-card ${cardClass}" id="qcard-${q.id}">
@@ -2506,18 +2657,12 @@ function toggleHint(qid) {
 function selectAnswer(qid, idx) {
   const q = QUESTIONS.find(x => x.id === qid);
   if (!q || practiceAnswers[qid]) return;
+  const sh = getShuffled(q);
 
-  const correct = idx === q.answer;
+  const correct = idx === sh.answer;
   practiceAnswers[qid] = { selected: idx, correct };
 
-  // Update stats
-  const attempted = Object.keys(practiceAnswers).length;
-  const correctCount = Object.values(practiceAnswers).filter(x => x.correct).length;
-  const wrongCount = attempted - correctCount;
-  document.getElementById('stat-total').textContent = attempted;
-  document.getElementById('stat-correct').textContent = correctCount;
-  document.getElementById('stat-wrong').textContent = wrongCount;
-  document.getElementById('stat-pct').textContent = attempted ? Math.round(correctCount/attempted*100)+'%' : '—';
+  updatePracticeStats();
 
   // Update card visuals
   const card = document.getElementById('qcard-' + qid);
@@ -2526,13 +2671,13 @@ function selectAnswer(qid, idx) {
   // Update buttons
   card.querySelectorAll('.opt-btn').forEach((btn, i) => {
     btn.disabled = true;
-    if (i === q.answer) btn.classList.add('correct');
+    if (i === sh.answer) btn.classList.add('correct');
     else if (i === idx) btn.classList.add('wrong');
   });
 
   // Show feedback
   const fb = document.getElementById('fb-' + qid);
-  fb.textContent = correct ? `✓ Correct! ${q.explanation}` : `✗ Correct answer: ${q.options[q.answer]}. ${q.explanation}`;
+  fb.textContent = correct ? `✓ Correct! ${q.explanation}` : `✗ Correct answer: ${sh.options[sh.answer]}. ${q.explanation}`;
   fb.className = `feedback ${correct ? 'correct' : 'wrong'} show`;
 
   // Hide hint
@@ -2596,12 +2741,14 @@ function showQuizQuestion() {
   document.getElementById('quiz-next-btn').disabled = true;
 
   const q = questions[current];
+  const sh = shuffleOptions(q); // fresh shuffle each quiz question
+  quizState.currentSh = sh;
   const pct = (current / questions.length) * 100;
   document.getElementById('quiz-progress-bar').style.width = pct + '%';
   document.getElementById('quiz-progress-text').textContent = `${current + 1} / ${questions.length}`;
   document.getElementById('quiz-streak').textContent = quizState.streak > 1 ? `🔥 ${quizState.streak}` : '';
 
-  const optionsHTML = q.options.map((opt, i) => `
+  const optionsHTML = sh.options.map((opt, i) => `
     <button class="opt-btn" onclick="quizSelectAnswer(${i})" data-idx="${i}">
       <span style="color:var(--muted);margin-right:6px;font-family:'Space Mono',monospace;font-size:0.75rem">${String.fromCharCode(65+i)})</span>${opt}
     </button>`).join('');
@@ -2647,15 +2794,15 @@ function updateTimerDisplay() {
 
 function autoTimeOut() {
   quizState.answered = true;
-  const q = quizState.questions[quizState.current];
+  const sh = quizState.currentSh;
   quizState.wrong++;
   quizState.streak = 0;
   document.querySelectorAll('#quiz-active-card .opt-btn').forEach((btn, i) => {
     btn.disabled = true;
-    if (i === q.answer) btn.classList.add('correct');
+    if (i === sh.answer) btn.classList.add('correct');
   });
   const fb = document.getElementById('quiz-fb');
-  fb.textContent = `⏰ Time's up! Correct answer: ${q.options[q.answer]}`;
+  fb.textContent = `⏰ Time's up! Correct answer: ${sh.options[sh.answer]}`;
   fb.className = 'feedback wrong show';
   document.getElementById('quiz-next-btn').disabled = false;
 }
@@ -2666,7 +2813,8 @@ function quizSelectAnswer(idx) {
   quizState.answered = true;
 
   const q = quizState.questions[quizState.current];
-  const correct = idx === q.answer;
+  const sh = quizState.currentSh;
+  const correct = idx === sh.answer;
 
   if (correct) {
     quizState.correct++;
@@ -2679,12 +2827,12 @@ function quizSelectAnswer(idx) {
 
   document.querySelectorAll('#quiz-active-card .opt-btn').forEach((btn, i) => {
     btn.disabled = true;
-    if (i === q.answer) btn.classList.add('correct');
+    if (i === sh.answer) btn.classList.add('correct');
     else if (i === idx) btn.classList.add('wrong');
   });
 
   const fb = document.getElementById('quiz-fb');
-  fb.textContent = correct ? `✓ Correct! ${q.explanation}` : `✗ ${q.options[q.answer]}. ${q.explanation}`;
+  fb.textContent = correct ? `✓ Correct! ${q.explanation}` : `✗ ${sh.options[sh.answer]}. ${q.explanation}`;
   fb.className = `feedback ${correct ? 'correct' : 'wrong'} show`;
 
   document.getElementById('quiz-streak').textContent = quizState.streak > 1 ? `🔥 ${quizState.streak}` : '';
@@ -2720,6 +2868,8 @@ function endQuiz() {
 // INIT
 // ============================================================
 window.onload = function() {
+  filteredQs = [...QUESTIONS];
+  pickActiveQs();
   renderPractice();
 };
 </script>
