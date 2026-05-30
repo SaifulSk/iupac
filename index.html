@@ -1,0 +1,2727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IUPAC Nomenclature | ICSE Class 10 Chemistry</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --card: #1a2236;
+    --border: #2a3a5c;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --warn: #f59e0b;
+    --danger: #ef4444;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --correct: #10b981;
+    --wrong: #ef4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 20%, rgba(0,212,255,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(124,58,237,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+  /* HEADER */
+  header {
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .logo-area h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-area p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+    letter-spacing: 0.5px;
+  }
+  .badge-cyan { border-color: var(--accent); color: var(--accent); }
+  .badge-purple { border-color: var(--accent2); color: var(--accent2); }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 28px;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    flex: 1;
+    min-width: 110px;
+    padding: 10px 16px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--accent2), #4f46e5);
+    color: white;
+  }
+
+  .tab-btn:not(.active):hover { color: var(--text); background: var(--card); }
+
+  /* PANELS */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    align-items: center;
+  }
+
+  .filter-bar label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  select, .pill-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  select:focus, .pill-btn:hover { border-color: var(--accent); outline: none; }
+
+  .pill-btn.active-filter { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.08); }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-card .val {
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: 'Space Mono', monospace;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-card .lbl {
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stat-card:nth-child(1) .val { color: var(--accent); }
+  .stat-card:nth-child(2) .val { color: var(--correct); }
+  .stat-card:nth-child(3) .val { color: var(--danger); }
+  .stat-card:nth-child(4) .val { color: var(--warn); }
+
+  /* QUESTION CARD */
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .q-card.answered-correct { border-color: var(--correct); }
+  .q-card.answered-wrong { border-color: var(--danger); }
+
+  .q-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    align-items: center;
+  }
+
+  .q-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .tag {
+    font-size: 0.65rem;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .tag-alkane { background: rgba(0,212,255,0.15); color: var(--accent); }
+  .tag-alkene { background: rgba(16,185,129,0.15); color: var(--correct); }
+  .tag-alkyne { background: rgba(124,58,237,0.15); color: #a78bfa; }
+  .tag-alcohol { background: rgba(245,158,11,0.15); color: var(--warn); }
+  .tag-aldehyde { background: rgba(239,68,68,0.15); color: var(--danger); }
+  .tag-ketone { background: rgba(236,72,153,0.15); color: #f9a8d4; }
+  .tag-acid { background: rgba(99,102,241,0.15); color: #818cf8; }
+  .tag-haloalkane { background: rgba(20,184,166,0.15); color: #5eead4; }
+  .tag-mixed { background: rgba(251,146,60,0.15); color: #fb923c; }
+  .tag-ester { background: rgba(34,211,238,0.15); color: #67e8f9; }
+
+  .year-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  .q-text {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #f1f5f9;
+  }
+
+  .q-formula {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.05rem;
+    background: rgba(0,212,255,0.08);
+    border: 1px solid rgba(0,212,255,0.2);
+    padding: 10px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 8px 0 16px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .opt-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.88rem;
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .opt-btn:hover:not(:disabled) { border-color: var(--accent2); background: rgba(124,58,237,0.1); }
+
+  .opt-btn.correct { border-color: var(--correct); background: rgba(16,185,129,0.15); color: var(--correct); }
+  .opt-btn.wrong { border-color: var(--danger); background: rgba(239,68,68,0.12); color: var(--danger); }
+  .opt-btn:disabled { cursor: not-allowed; }
+
+  .feedback {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-top: 8px;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); color: #6ee7b7; }
+  .feedback.wrong { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
+
+  /* QUIZ MODE */
+  .quiz-setup {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+
+  .quiz-setup h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .quiz-setup p { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
+
+  .setup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+
+  .setup-item label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  .setup-item select {
+    width: 100%;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent2), #4f46e5);
+    color: white;
+    border: none;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 14px 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-secondary {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); }
+
+  /* QUIZ ACTIVE */
+  .quiz-progress {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .progress-bar-wrap {
+    flex: 1;
+    height: 6px;
+    background: var(--surface);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  .progress-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .timer-display {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--warn);
+    white-space: nowrap;
+  }
+
+  /* RESULTS */
+  .results-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .results-score {
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: 'Space Mono', monospace;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .results-label { color: var(--muted); font-size: 0.88rem; margin-bottom: 32px; }
+
+  .results-breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .rb-item {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .rb-item .rval {
+    font-size: 1.6rem;
+    font-weight: 800;
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 4px;
+  }
+
+  .rb-item:nth-child(1) .rval { color: var(--correct); }
+  .rb-item:nth-child(2) .rval { color: var(--danger); }
+  .rb-item:nth-child(3) .rval { color: var(--warn); }
+  .rb-item .rlbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* REFERENCE TABLE */
+  .ref-section { margin-bottom: 32px; }
+  .ref-section h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.3px;
+  }
+
+  .ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  .ref-table th {
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ref-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(42,58,92,0.5);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+  }
+
+  .ref-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .ref-table td:first-child { color: var(--accent); }
+
+  .rule-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+
+  .rule-card h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .rule-card p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .rule-card code {
+    background: rgba(0,212,255,0.1);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+  }
+
+  /* SEARCH */
+  .search-wrap { position: relative; margin-bottom: 20px; }
+
+  .search-input {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    padding: 12px 16px 12px 42px;
+    border-radius: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .search-input:focus { outline: none; border-color: var(--accent); }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  /* EMPTY */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+
+  .empty-state .emoji { font-size: 2.5rem; margin-bottom: 12px; }
+  .empty-state p { font-size: 0.88rem; }
+
+  /* NAV BTNS */
+  .nav-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    .options-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .setup-grid { grid-template-columns: 1fr; }
+    .results-breakdown { grid-template-columns: 1fr; }
+  }
+
+  .hidden { display: none !important; }
+
+  .q-type-badge {
+    font-size: 0.62rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(100,116,139,0.2);
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .streak-display {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--warn);
+  }
+
+  .difficulty-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+  }
+  .diff-easy { background: var(--correct); }
+  .diff-med { background: var(--warn); }
+  .diff-hard { background: var(--danger); }
+
+  .hint-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent2);
+    background: none;
+    border: 1px solid var(--accent2);
+    border-radius: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .hint-btn:hover { background: rgba(124,58,237,0.1); }
+
+  .hint-text {
+    font-size: 0.78rem;
+    color: #a78bfa;
+    background: rgba(124,58,237,0.08);
+    border: 1px solid rgba(124,58,237,0.2);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 8px;
+    display: none;
+  }
+
+  .hint-text.show { display: block; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <h1>⚗ IUPAC Nomenclature</h1>
+        <p>ICSE Class 10 · Organic Chemistry · 25-Year Question Bank</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="badge badge-cyan">200+ Questions</span>
+        <span class="badge badge-purple">1999–2024</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('practice')">📚 Practice</button>
+    <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz Mode</button>
+    <button class="tab-btn" onclick="switchTab('reference')">📋 Reference</button>
+  </div>
+
+  <!-- PRACTICE PANEL -->
+  <div id="panel-practice" class="panel active">
+    <div class="stats-row">
+      <div class="stat-card"><div class="val" id="stat-total">0</div><div class="lbl">Attempted</div></div>
+      <div class="stat-card"><div class="val" id="stat-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="stat-card"><div class="val" id="stat-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="stat-card"><div class="val" id="stat-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+
+    <div class="filter-bar">
+      <label>Filter:</label>
+      <select id="filter-type" onchange="applyFilters()">
+        <option value="all">All Types</option>
+        <option value="alkane">Alkanes</option>
+        <option value="alkene">Alkenes</option>
+        <option value="alkyne">Alkynes</option>
+        <option value="alcohol">Alcohols</option>
+        <option value="aldehyde">Aldehydes</option>
+        <option value="ketone">Ketones</option>
+        <option value="acid">Carboxylic Acids</option>
+        <option value="haloalkane">Haloalkanes</option>
+        <option value="ester">Esters</option>
+        <option value="mixed">Mixed/Other</option>
+      </select>
+      <select id="filter-diff" onchange="applyFilters()">
+        <option value="all">All Levels</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <select id="filter-qtype" onchange="applyFilters()">
+        <option value="all">All Q-Types</option>
+        <option value="name">Structure → Name</option>
+        <option value="structure">Name → Structure</option>
+        <option value="formula">Formula → Name</option>
+      </select>
+      <button class="btn-secondary" onclick="resetFilters()">Reset</button>
+    </div>
+
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="search-input" placeholder="Search questions, formulas, or names..." oninput="applyFilters()">
+    </div>
+
+    <div id="practice-list"></div>
+  </div>
+
+  <!-- QUIZ PANEL -->
+  <div id="panel-quiz" class="panel">
+    <div id="quiz-setup-screen" class="quiz-setup">
+      <h2>🎯 Quick Quiz</h2>
+      <p>Test yourself with timed questions from the ICSE question bank</p>
+      <div class="setup-grid">
+        <div class="setup-item">
+          <label>Number of Questions</label>
+          <select id="quiz-count">
+            <option value="10">10 Questions</option>
+            <option value="20" selected>20 Questions</option>
+            <option value="30">30 Questions</option>
+            <option value="50">50 Questions</option>
+          </select>
+        </div>
+        <div class="setup-item">
+          <label>Topic</label>
+          <select id="quiz-topic">
+            <option value="all">All Topics</option>
+            <option value="alkane">Alkanes</option>
+            <option value="alkene">Alkenes</option>
+            <option value="alkyne">Alkynes</option>
+            <option value="alcohol">Alcohols</option>
+            <option value="aldehyde">Aldehydes</option>
+            <option value="ketone">Ketones</option>
+            <option value="acid">Carboxylic Acids</option>
+            <option value="haloalkane">Haloalkanes</option>
+          </select>
+        </div>
+        <div class="setup-item">
+          <label>Difficulty</label>
+          <select id="quiz-diff">
+            <option value="all">All Levels</option>
+            <option value="easy">Easy Only</option>
+            <option value="medium">Medium Only</option>
+            <option value="hard">Hard Only</option>
+          </select>
+        </div>
+        <div class="setup-item">
+          <label>Time per Question</label>
+          <select id="quiz-time">
+            <option value="0">No Timer</option>
+            <option value="30">30 seconds</option>
+            <option value="60" selected>60 seconds</option>
+            <option value="90">90 seconds</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="startQuiz()">Start Quiz →</button>
+    </div>
+
+    <div id="quiz-active-screen" class="hidden">
+      <div class="quiz-progress">
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="quiz-progress-bar" style="width:0%"></div>
+        </div>
+        <span class="progress-text" id="quiz-progress-text">0 / 0</span>
+        <span class="timer-display" id="quiz-timer"></span>
+        <span class="streak-display" id="quiz-streak"></span>
+      </div>
+      <div id="quiz-question-container"></div>
+      <div class="nav-btns">
+        <button class="btn-secondary" id="quiz-next-btn" onclick="nextQuizQuestion()" disabled>Next →</button>
+      </div>
+    </div>
+
+    <div id="quiz-results-screen" class="hidden">
+      <div class="results-card">
+        <div class="results-score" id="results-pct">0%</div>
+        <div class="results-label" id="results-grade">Keep practising!</div>
+        <div class="results-breakdown">
+          <div class="rb-item"><div class="rval" id="res-correct">0</div><div class="rlbl">Correct</div></div>
+          <div class="rb-item"><div class="rval" id="res-wrong">0</div><div class="rlbl">Wrong</div></div>
+          <div class="rb-item"><div class="rval" id="res-streak">0</div><div class="rlbl">Best Streak</div></div>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <button class="btn-primary" onclick="startQuiz()">Retry Quiz</button>
+          <button class="btn-secondary" onclick="showSetup()">Change Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFERENCE PANEL -->
+  <div id="panel-reference" class="panel">
+    <div class="ref-section">
+      <h3>📐 IUPAC Rules for Naming Organic Compounds</h3>
+      <div class="rule-card">
+        <h4>Rule 1 — Find the Longest Carbon Chain</h4>
+        <p>Identify the longest continuous chain of carbon atoms. This gives the parent name: <code>meth(1) eth(2) prop(3) but(4) pent(5) hex(6) hept(7) oct(8) non(9) dec(10)</code></p>
+      </div>
+      <div class="rule-card">
+        <h4>Rule 2 — Identify the Principal Functional Group</h4>
+        <p>Priority order (highest to lowest): <code>-COOH &gt; -CHO &gt; -CO- &gt; -OH &gt; C=C &gt; C≡C &gt; -X</code>. The chain must include this group.</p>
+      </div>
+      <div class="rule-card">
+        <h4>Rule 3 — Number the Chain</h4>
+        <p>Number from the end nearest to the principal functional group. For alkanes with only substituents, number from end nearest the first substituent.</p>
+      </div>
+      <div class="rule-card">
+        <h4>Rule 4 — Name Substituents as Prefixes</h4>
+        <p>Substituents listed alphabetically with locant numbers: <code>1-bromo, 2-chloro, 3-methyl...</code>. Identical groups use multipliers: <code>di, tri, tetra</code></p>
+      </div>
+      <div class="rule-card">
+        <h4>Rule 5 — Suffix for Functional Group</h4>
+        <p>Alkane → <code>-ane</code> | Alkene → <code>-ene</code> | Alkyne → <code>-yne</code> | Alcohol → <code>-ol</code> | Aldehyde → <code>-al</code> | Ketone → <code>-one</code> | Carboxylic acid → <code>-oic acid</code></p>
+      </div>
+    </div>
+
+    <div class="ref-section">
+      <h3>🔢 Carbon Chain Prefixes</h3>
+      <table class="ref-table">
+        <tr><th>Carbons</th><th>Prefix</th><th>Example</th><th>Formula</th></tr>
+        <tr><td>1</td><td>Meth-</td><td>Methane</td><td>CH₄</td></tr>
+        <tr><td>2</td><td>Eth-</td><td>Ethane</td><td>C₂H₆</td></tr>
+        <tr><td>3</td><td>Prop-</td><td>Propane</td><td>C₃H₈</td></tr>
+        <tr><td>4</td><td>But-</td><td>Butane</td><td>C₄H₁₀</td></tr>
+        <tr><td>5</td><td>Pent-</td><td>Pentane</td><td>C₅H₁₂</td></tr>
+        <tr><td>6</td><td>Hex-</td><td>Hexane</td><td>C₆H₁₄</td></tr>
+        <tr><td>7</td><td>Hept-</td><td>Heptane</td><td>C₇H₁₆</td></tr>
+        <tr><td>8</td><td>Oct-</td><td>Octane</td><td>C₈H₁₈</td></tr>
+        <tr><td>9</td><td>Non-</td><td>Nonane</td><td>C₉H₂₀</td></tr>
+        <tr><td>10</td><td>Dec-</td><td>Decane</td><td>C₁₀H₂₂</td></tr>
+      </table>
+    </div>
+
+    <div class="ref-section">
+      <h3>🧪 Functional Group Suffixes & Prefixes</h3>
+      <table class="ref-table">
+        <tr><th>Class</th><th>Group</th><th>Suffix</th><th>Prefix</th><th>Example</th></tr>
+        <tr><td>Alkane</td><td>C-C</td><td>-ane</td><td>—</td><td>Ethane</td></tr>
+        <tr><td>Alkene</td><td>C=C</td><td>-ene</td><td>—</td><td>Ethene</td></tr>
+        <tr><td>Alkyne</td><td>C≡C</td><td>-yne</td><td>—</td><td>Ethyne</td></tr>
+        <tr><td>Alcohol</td><td>-OH</td><td>-ol</td><td>hydroxy-</td><td>Ethanol</td></tr>
+        <tr><td>Aldehyde</td><td>-CHO</td><td>-al</td><td>formyl-</td><td>Ethanal</td></tr>
+        <tr><td>Ketone</td><td>C=O</td><td>-one</td><td>oxo-</td><td>Propanone</td></tr>
+        <tr><td>Carboxylic Acid</td><td>-COOH</td><td>-oic acid</td><td>carboxy-</td><td>Ethanoic acid</td></tr>
+        <tr><td>Ester</td><td>-COO-</td><td>-yl …oate</td><td>—</td><td>Ethyl ethanoate</td></tr>
+        <tr><td>Haloalkane</td><td>-X</td><td>—</td><td>fluoro/chloro/bromo/iodo-</td><td>Chloroethane</td></tr>
+      </table>
+    </div>
+
+    <div class="ref-section">
+      <h3>🔄 Common Old Name → IUPAC Name</h3>
+      <table class="ref-table">
+        <tr><th>Old / Common Name</th><th>IUPAC Name</th><th>Formula</th></tr>
+        <tr><td>Marsh gas / Methane</td><td>Methane</td><td>CH₄</td></tr>
+        <tr><td>Acetylene</td><td>Ethyne</td><td>C₂H₂</td></tr>
+        <tr><td>Ethylene</td><td>Ethene</td><td>C₂H₄</td></tr>
+        <tr><td>Acetaldehyde</td><td>Ethanal</td><td>CH₃CHO</td></tr>
+        <tr><td>Acetone</td><td>Propanone</td><td>CH₃COCH₃</td></tr>
+        <tr><td>Acetic acid</td><td>Ethanoic acid</td><td>CH₃COOH</td></tr>
+        <tr><td>Formic acid</td><td>Methanoic acid</td><td>HCOOH</td></tr>
+        <tr><td>Chloroform</td><td>Trichloromethane</td><td>CHCl₃</td></tr>
+        <tr><td>Alcohol / Ethanol</td><td>Ethanol</td><td>C₂H₅OH</td></tr>
+        <tr><td>Propyl alcohol</td><td>Propan-1-ol</td><td>C₃H₇OH</td></tr>
+        <tr><td>Isopropyl alcohol</td><td>Propan-2-ol</td><td>(CH₃)₂CHOH</td></tr>
+        <tr><td>Isobutane</td><td>2-Methylpropane</td><td>C₄H₁₀</td></tr>
+        <tr><td>Isobutylene</td><td>2-Methylpropene</td><td>C₄H₈</td></tr>
+        <tr><td>Ethyl acetate</td><td>Ethyl ethanoate</td><td>CH₃COOC₂H₅</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// QUESTION BANK — 200+ ICSE IUPAC questions (1999–2024)
+// ============================================================
+const QUESTIONS = [
+  // ---- ALKANES ----
+  {id:1, type:"alkane", qtype:"formula", diff:"easy", year:"2001",
+   question:"Give the IUPAC name of the compound with the formula:",
+   formula:"CH₃-CH₂-CH₂-CH₃",
+   options:["Butane","Propane","Isobutane","2-Methylpropane"],
+   answer:0, hint:"Count carbons in the longest chain.",
+   explanation:"4 carbons in a straight chain = But + ane = Butane"},
+
+  {id:2, type:"alkane", qtype:"formula", diff:"easy", year:"2003",
+   question:"Give the IUPAC name:",
+   formula:"CH₃-CH₃",
+   options:["Methane","Ethane","Propane","Butane"],
+   answer:1, hint:"2 carbon chain.",
+   explanation:"2 carbons → Eth + ane = Ethane"},
+
+  {id:3, type:"alkane", qtype:"formula", diff:"medium", year:"2005",
+   question:"Name the following compound:",
+   formula:"CH₃-CH(CH₃)-CH₂-CH₃",
+   options:["2-Methylbutane","3-Methylbutane","Isopentane","Pentane"],
+   answer:0, hint:"Longest chain has 4 carbons; methyl on C2.",
+   explanation:"Longest chain = 4C (butane); methyl substituent at C2 → 2-Methylbutane"},
+
+  {id:4, type:"alkane", qtype:"formula", diff:"medium", year:"2007",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(CH₃)-CH(CH₃)-CH₃",
+   options:["2,3-Dimethylbutane","2-Methylpentane","Hexane","3-Methylpentane"],
+   answer:0, hint:"Two methyl groups on adjacent carbons of a 4C chain.",
+   explanation:"4C parent chain (butane); methyls at C2 and C3 → 2,3-Dimethylbutane"},
+
+  {id:5, type:"alkane", qtype:"name", diff:"easy", year:"2002",
+   question:"Write the structural formula of Propane:",
+   formula:"",
+   options:["CH₃-CH₂-CH₃","CH₃-CH₃","CH₄","CH₃-CH₂-CH₂-CH₃"],
+   answer:0, hint:"Prop = 3 carbons, -ane = single bonds.",
+   explanation:"Propane has 3 carbons: CH₃-CH₂-CH₃"},
+
+  {id:6, type:"alkane", qtype:"formula", diff:"hard", year:"2012",
+   question:"Name the compound:",
+   formula:"CH₃-CH₂-CH(CH₃)-CH₂-CH₃",
+   options:["3-Methylpentane","2-Methylpentane","3-Ethylbutane","Hexane"],
+   answer:0, hint:"Number from end nearest substituent; longest chain is 5C.",
+   explanation:"5C parent chain (pentane); methyl at C3 → 3-Methylpentane"},
+
+  {id:7, type:"alkane", qtype:"formula", diff:"hard", year:"2015",
+   question:"Give IUPAC name:",
+   formula:"(CH₃)₃C-CH₃",
+   options:["2,2-Dimethylpropane","Isopentane","2-Methylbutane","Neopentane(old)"],
+   answer:0, hint:"Central C has 3 methyls + 1 CH₃.",
+   explanation:"5 carbons total; C2 has two methyl groups → 2,2-Dimethylpropane"},
+
+  {id:8, type:"alkane", qtype:"formula", diff:"medium", year:"2009",
+   question:"Name the compound:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₃",
+   options:["Pentane","Butane","Hexane","Propane"],
+   answer:0, hint:"Count: 5 carbons straight chain.",
+   explanation:"5 carbons in straight chain → Pentane"},
+
+  {id:9, type:"alkane", qtype:"formula", diff:"hard", year:"2018",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C(CH₃)₂-CH₂-CH₃",
+   options:["2,2-Dimethylbutane","3,3-Dimethylbutane","2-Methylpentane","Hexane"],
+   answer:0, hint:"4C parent chain; two methyls on C2.",
+   explanation:"Longest chain = 4C; C2 has two methyl groups → 2,2-Dimethylbutane"},
+
+  {id:10, type:"alkane", qtype:"formula", diff:"medium", year:"2011",
+   question:"Write IUPAC name of 2-methylpropane's structure which is:",
+   formula:"CH₃-CH(CH₃)-CH₃",
+   options:["2-Methylpropane","Isobutane(trivial)","Butane","3-Methylpropane"],
+   answer:0, hint:"The correct IUPAC name uses numbering from nearest end.",
+   explanation:"3C parent chain with methyl at C2 → 2-Methylpropane (isobutane is trivial name)"},
+
+  // ---- ALKENES ----
+  {id:11, type:"alkene", qtype:"formula", diff:"easy", year:"2000",
+   question:"Give IUPAC name:",
+   formula:"CH₂=CH₂",
+   options:["Ethene","Ethyne","Ethane","Propene"],
+   answer:0, hint:"2 carbons with double bond = eth + ene.",
+   explanation:"2 carbons, double bond → Ethene"},
+
+  {id:12, type:"alkene", qtype:"formula", diff:"easy", year:"2004",
+   question:"Name the compound:",
+   formula:"CH₂=CH-CH₃",
+   options:["Propene","Propane","Butene","Ethene"],
+   answer:0, hint:"3C with double bond starting at C1.",
+   explanation:"3 carbons, C=C at position 1 → Propene (prop-1-ene)"},
+
+  {id:13, type:"alkene", qtype:"formula", diff:"medium", year:"2006",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH=CH-CH₃",
+   options:["But-2-ene","But-1-ene","Butene","2-Butene"],
+   answer:0, hint:"4C chain; double bond between C2 and C3.",
+   explanation:"4C chain with C=C at C2-C3 → But-2-ene"},
+
+  {id:14, type:"alkene", qtype:"formula", diff:"medium", year:"2008",
+   question:"Name this compound:",
+   formula:"CH₂=CH-CH₂-CH₃",
+   options:["But-1-ene","But-2-ene","1-Butene (same)","Butane"],
+   answer:0, hint:"4C; double bond starts at C1.",
+   explanation:"4 carbons, C=C at C1 → But-1-ene"},
+
+  {id:15, type:"alkene", qtype:"formula", diff:"hard", year:"2010",
+   question:"Give IUPAC name:",
+   formula:"CH₂=C(CH₃)-CH₃",
+   options:["2-Methylpropene","2-Methylprop-1-ene (same)","Isobutylene","But-1-ene"],
+   answer:0, hint:"3C main chain + methyl branch at C2; double bond at C1.",
+   explanation:"Parent chain = 3C (propene); methyl at C2 → 2-Methylpropene"},
+
+  {id:16, type:"alkene", qtype:"formula", diff:"hard", year:"2013",
+   question:"Name the following:",
+   formula:"CH₃-CH=C(CH₃)-CH₃",
+   options:["2-Methylbut-2-ene","3-Methylbut-2-ene","2-Methylbut-1-ene","Pentene"],
+   answer:0, hint:"5 carbons including methyl branch; number from end giving lower locant to double bond.",
+   explanation:"5C total; longest chain = 4C (but-2-ene); methyl at C2 → 2-Methylbut-2-ene"},
+
+  {id:17, type:"alkene", qtype:"formula", diff:"medium", year:"2014",
+   question:"Give IUPAC name:",
+   formula:"CH₂=CH-CH=CH₂",
+   options:["Buta-1,3-diene","But-1,3-diene","1,3-Butadiene","Dibutene"],
+   answer:0, hint:"4 carbons, two double bonds at C1 and C3.",
+   explanation:"4C, two double bonds → Buta-1,3-diene"},
+
+  {id:18, type:"alkene", qtype:"name", diff:"easy", year:"2001",
+   question:"Write structural formula of Ethene:",
+   formula:"",
+   options:["CH₂=CH₂","CH≡CH","CH₃-CH₃","CH₂=CH-CH₃"],
+   answer:0, hint:"Eth = 2C, -ene = double bond.",
+   explanation:"Ethene: 2 carbons with one double bond = CH₂=CH₂"},
+
+  {id:19, type:"alkene", qtype:"formula", diff:"hard", year:"2019",
+   question:"Name the compound:",
+   formula:"CH₃-CH₂-CH=CH-CH₂-CH₃",
+   options:["Hex-3-ene","Hex-4-ene","Hex-2-ene","3-Hexene"],
+   answer:0, hint:"6C chain; number from end giving lower locant to C=C.",
+   explanation:"6C chain, double bond at C3-C4; from either end locant = 3 → Hex-3-ene"},
+
+  {id:20, type:"alkene", qtype:"formula", diff:"medium", year:"2016",
+   question:"Give IUPAC name:",
+   formula:"CH₂=CH-CH₂-CH₂-CH₃",
+   options:["Pent-1-ene","Pent-4-ene","1-Pentene","Pentene"],
+   answer:0, hint:"5C; double bond at C1.",
+   explanation:"5 carbons, C=C at position 1 → Pent-1-ene"},
+
+  // ---- ALKYNES ----
+  {id:21, type:"alkyne", qtype:"formula", diff:"easy", year:"2000",
+   question:"Give IUPAC name:",
+   formula:"CH≡CH",
+   options:["Ethyne","Ethene","Acetylene","Propyne"],
+   answer:0, hint:"2 carbons, triple bond.",
+   explanation:"2 carbons with triple bond → Ethyne (common name: acetylene)"},
+
+  {id:22, type:"alkyne", qtype:"formula", diff:"easy", year:"2003",
+   question:"Name this compound:",
+   formula:"CH≡C-CH₃",
+   options:["Propyne","Propene","Butyne","Ethyne"],
+   answer:0, hint:"3C, triple bond at C1.",
+   explanation:"3 carbons, triple bond at C1 → Propyne (prop-1-yne)"},
+
+  {id:23, type:"alkyne", qtype:"formula", diff:"medium", year:"2007",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C≡C-CH₃",
+   options:["But-2-yne","But-1-yne","Butyne","2-Butyne"],
+   answer:0, hint:"4C, triple bond at C2-C3.",
+   explanation:"4C, triple bond between C2 and C3 → But-2-yne"},
+
+  {id:24, type:"alkyne", qtype:"formula", diff:"medium", year:"2010",
+   question:"Name:",
+   formula:"CH₂=CH-C≡CH",
+   options:["But-1-en-3-yne","Vinylacetylene","But-3-en-1-yne","1-Buten-3-yne"],
+   answer:0, hint:"4C; double bond at C1 (higher priority gets lower number in combined naming, but IUPAC gives lower set to double bond).",
+   explanation:"4C chain with C=C at C1 and C≡C at C3 → But-1-en-3-yne"},
+
+  {id:25, type:"alkyne", qtype:"formula", diff:"hard", year:"2014",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-C≡C-CH₃",
+   options:["Pent-2-yne","Pent-3-yne","2-Pentyne","Pentyne"],
+   answer:0, hint:"5C; number from end nearest triple bond.",
+   explanation:"5C, triple bond at C2 (numbering from left) → Pent-2-yne"},
+
+  {id:26, type:"alkyne", qtype:"name", diff:"easy", year:"2002",
+   question:"Write structural formula of Propyne:",
+   formula:"",
+   options:["CH₃-C≡CH","CH₂=CH-CH₃","CH₃-CH₂-CH₃","HC≡C-CH=CH₂"],
+   answer:0, hint:"Prop = 3C, -yne = triple bond.",
+   explanation:"Propyne: CH₃-C≡CH"},
+
+  {id:27, type:"alkyne", qtype:"formula", diff:"hard", year:"2017",
+   question:"Name the compound:",
+   formula:"CH₃-C≡C-CH₂-CH₃",
+   options:["Pent-2-yne","Pent-3-yne","2-Pentyne","3-Pentyne"],
+   answer:0, hint:"5C; triple bond between C2-C3 (from left end gives lower locant).",
+   explanation:"5C, triple bond at C2-C3 → Pent-2-yne"},
+
+  // ---- ALCOHOLS ----
+  {id:28, type:"alcohol", qtype:"formula", diff:"easy", year:"2000",
+   question:"Give IUPAC name:",
+   formula:"CH₃OH",
+   options:["Methanol","Ethanol","Propanol","Methane"],
+   answer:0, hint:"1 carbon + OH group.",
+   explanation:"1 carbon with -OH → Methanol"},
+
+  {id:29, type:"alcohol", qtype:"formula", diff:"easy", year:"2001",
+   question:"Give IUPAC name:",
+   formula:"CH₃CH₂OH",
+   options:["Ethanol","Methanol","Propan-1-ol","Ethane"],
+   answer:0, hint:"2 carbons + OH at C1.",
+   explanation:"2 carbons, -OH at end → Ethanol"},
+
+  {id:30, type:"alcohol", qtype:"formula", diff:"easy", year:"2004",
+   question:"Name the compound:",
+   formula:"CH₃-CH₂-CH₂-OH",
+   options:["Propan-1-ol","Propan-2-ol","Propanol","Butanol"],
+   answer:0, hint:"3C; -OH at C1.",
+   explanation:"3 carbons, -OH at C1 → Propan-1-ol"},
+
+  {id:31, type:"alcohol", qtype:"formula", diff:"medium", year:"2006",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(OH)-CH₃",
+   options:["Propan-2-ol","Propan-1-ol","2-Propanol","Isopropanol"],
+   answer:0, hint:"3C; -OH at C2.",
+   explanation:"3 carbons, -OH at C2 → Propan-2-ol"},
+
+  {id:32, type:"alcohol", qtype:"formula", diff:"medium", year:"2008",
+   question:"Name this compound:",
+   formula:"CH₃-CH₂-CH₂-CH₂-OH",
+   options:["Butan-1-ol","Butan-2-ol","Butanol","Propan-1-ol"],
+   answer:0, hint:"4C; -OH at C1.",
+   explanation:"4 carbons, -OH at C1 → Butan-1-ol"},
+
+  {id:33, type:"alcohol", qtype:"formula", diff:"medium", year:"2011",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(OH)-CH₂-CH₃",
+   options:["Butan-2-ol","Butan-1-ol","Butan-3-ol","2-Butanol"],
+   answer:0, hint:"4C; -OH at C2.",
+   explanation:"4 carbons, -OH at C2 → Butan-2-ol"},
+
+  {id:34, type:"alcohol", qtype:"formula", diff:"hard", year:"2013",
+   question:"Name:",
+   formula:"(CH₃)₃C-OH",
+   options:["2-Methylpropan-2-ol","2-Methylpropan-1-ol","Butanol","tert-Butanol"],
+   answer:0, hint:"Central C has 3 methyls and an OH; IUPAC uses propan-2-ol base.",
+   explanation:"4C total; OH on C2 of 2-methylpropane → 2-Methylpropan-2-ol"},
+
+  {id:35, type:"alcohol", qtype:"formula", diff:"hard", year:"2015",
+   question:"Give IUPAC name:",
+   formula:"HOCH₂-CH₂OH",
+   options:["Ethane-1,2-diol","Ethanol","1,2-Ethanediol","Glycol"],
+   answer:0, hint:"2C with -OH on each carbon.",
+   explanation:"2 carbons, two OH groups at C1 and C2 → Ethane-1,2-diol"},
+
+  {id:36, type:"alcohol", qtype:"formula", diff:"hard", year:"2018",
+   question:"Name the compound:",
+   formula:"CH₂OH-CHOH-CH₂OH",
+   options:["Propane-1,2,3-triol","Glycerol (trivial)","1,2,3-Propanetriol","Trihydroxypropane"],
+   answer:0, hint:"3C with three -OH groups.",
+   explanation:"3 carbons, three -OH groups → Propane-1,2,3-triol (glycerol)"},
+
+  {id:37, type:"alcohol", qtype:"name", diff:"easy", year:"2003",
+   question:"Write structural formula of Ethanol:",
+   formula:"",
+   options:["CH₃-CH₂-OH","CH₃-OH","CH₃-CH₂-CH₂-OH","C₂H₅-O-C₂H₅"],
+   answer:0, hint:"Eth = 2C, -ol = OH group.",
+   explanation:"Ethanol: CH₃CH₂OH"},
+
+  {id:38, type:"alcohol", qtype:"formula", diff:"medium", year:"2020",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(OH)-CH(OH)-CH₃",
+   options:["Butane-2,3-diol","Butane-1,2-diol","2,3-Butanediol","Butan-2-ol"],
+   answer:0, hint:"4C; OH at C2 and C3.",
+   explanation:"4C, -OH at C2 and C3 → Butane-2,3-diol"},
+
+  // ---- ALDEHYDES ----
+  {id:39, type:"aldehyde", qtype:"formula", diff:"easy", year:"2001",
+   question:"Give IUPAC name:",
+   formula:"HCHO",
+   options:["Methanal","Ethanal","Methanol","Formaldehyde"],
+   answer:0, hint:"1C aldehyde (-CHO).",
+   explanation:"1 carbon aldehyde → Methanal (common: formaldehyde)"},
+
+  {id:40, type:"aldehyde", qtype:"formula", diff:"easy", year:"2002",
+   question:"Name this compound:",
+   formula:"CH₃CHO",
+   options:["Ethanal","Methanal","Propan-1-al","Acetaldehyde"],
+   answer:0, hint:"2C; -CHO group.",
+   explanation:"2 carbons, -CHO at end → Ethanal (common: acetaldehyde)"},
+
+  {id:41, type:"aldehyde", qtype:"formula", diff:"medium", year:"2005",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CHO",
+   options:["Propanal","Propan-1-al","Butanal","Ethanal"],
+   answer:0, hint:"3C; aldehyde group at C1.",
+   explanation:"3 carbons, -CHO → Propanal"},
+
+  {id:42, type:"aldehyde", qtype:"formula", diff:"medium", year:"2009",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CHO",
+   options:["Butanal","Propanal","Pentanal","Butan-1-al"],
+   answer:0, hint:"4C aldehyde.",
+   explanation:"4 carbons, -CHO → Butanal"},
+
+  {id:43, type:"aldehyde", qtype:"formula", diff:"hard", year:"2012",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(CH₃)-CHO",
+   options:["2-Methylpropanal","2-Methylpropan-1-al","3-Methylbutanal","Isobutyraldehyde"],
+   answer:0, hint:"3C parent chain (propanal); methyl at C2.",
+   explanation:"3C parent (propanal); methyl substituent at C2 → 2-Methylpropanal"},
+
+  {id:44, type:"aldehyde", qtype:"name", diff:"easy", year:"2004",
+   question:"Write structural formula of Propanal:",
+   formula:"",
+   options:["CH₃-CH₂-CHO","CH₃-CHO","HCHO","CH₃-CO-CH₃"],
+   answer:0, hint:"Prop = 3C, -al = aldehyde.",
+   explanation:"Propanal: CH₃CH₂CHO"},
+
+  {id:45, type:"aldehyde", qtype:"formula", diff:"hard", year:"2016",
+   question:"Name the compound:",
+   formula:"OHC-CHO",
+   options:["Ethanedial","Glyoxal","Oxalaldehyde","Methane-1,1-dicarbaldehyde"],
+   answer:0, hint:"2C with aldehyde group at both ends.",
+   explanation:"2 carbons, two CHO groups → Ethanedial"},
+
+  // ---- KETONES ----
+  {id:46, type:"ketone", qtype:"formula", diff:"easy", year:"2001",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CO-CH₃",
+   options:["Propanone","Propanal","Butanone","Acetone"],
+   answer:0, hint:"3C; C=O in middle = ketone.",
+   explanation:"3 carbons, ketone C=O at C2 → Propanone (common: acetone)"},
+
+  {id:47, type:"ketone", qtype:"formula", diff:"medium", year:"2004",
+   question:"Name this compound:",
+   formula:"CH₃-CO-CH₂-CH₃",
+   options:["Butan-2-one","Butan-3-one","Butanone","Methyl ethyl ketone"],
+   answer:0, hint:"4C; C=O at C2.",
+   explanation:"4 carbons, carbonyl at C2 → Butan-2-one"},
+
+  {id:48, type:"ketone", qtype:"formula", diff:"hard", year:"2007",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CO-CH₂-CH₂-CH₃",
+   options:["Pentan-2-one","Pentan-3-one","Pentan-4-one","2-Pentanone"],
+   answer:0, hint:"5C; carbonyl at C2.",
+   explanation:"5 carbons, C=O at C2 → Pentan-2-one"},
+
+  {id:49, type:"ketone", qtype:"formula", diff:"hard", year:"2010",
+   question:"Name:",
+   formula:"CH₃-CH₂-CO-CH₂-CH₃",
+   options:["Pentan-3-one","Pentan-2-one","3-Pentanone","Pentanone"],
+   answer:0, hint:"5C; carbonyl in middle at C3.",
+   explanation:"5 carbons, C=O at C3 → Pentan-3-one"},
+
+  {id:50, type:"ketone", qtype:"name", diff:"easy", year:"2002",
+   question:"Write structural formula of Propanone:",
+   formula:"",
+   options:["CH₃-CO-CH₃","CH₃-CHO","CH₃-CH₂-CHO","HCHO"],
+   answer:0, hint:"Prop = 3C, -one = ketone at C2.",
+   explanation:"Propanone: CH₃COCH₃"},
+
+  {id:51, type:"ketone", qtype:"formula", diff:"hard", year:"2013",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CO-CH(CH₃)-CH₃",
+   options:["3-Methylbutan-2-one","2-Methylbutan-3-one","Methylbutanone","4-Methylpentan-2-one"],
+   answer:0, hint:"4C parent (butan-2-one); methyl at C3.",
+   explanation:"4C parent chain; C=O at C2; methyl at C3 → 3-Methylbutan-2-one"},
+
+  // ---- CARBOXYLIC ACIDS ----
+  {id:52, type:"acid", qtype:"formula", diff:"easy", year:"2000",
+   question:"Give IUPAC name:",
+   formula:"HCOOH",
+   options:["Methanoic acid","Ethanoic acid","Formic acid","Methanedioic acid"],
+   answer:0, hint:"1C carboxylic acid.",
+   explanation:"1 carbon acid → Methanoic acid (common: formic acid)"},
+
+  {id:53, type:"acid", qtype:"formula", diff:"easy", year:"2001",
+   question:"Name:",
+   formula:"CH₃COOH",
+   options:["Ethanoic acid","Methanoic acid","Propanoic acid","Acetic acid"],
+   answer:0, hint:"2C carboxylic acid.",
+   explanation:"2 carbons, -COOH → Ethanoic acid (common: acetic acid)"},
+
+  {id:54, type:"acid", qtype:"formula", diff:"easy", year:"2003",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-COOH",
+   options:["Propanoic acid","Butanoic acid","Propionic acid","Ethanoic acid"],
+   answer:0, hint:"3C acid.",
+   explanation:"3 carbons, -COOH → Propanoic acid"},
+
+  {id:55, type:"acid", qtype:"formula", diff:"medium", year:"2006",
+   question:"Name this compound:",
+   formula:"CH₃-CH₂-CH₂-COOH",
+   options:["Butanoic acid","Propanoic acid","Pentanoic acid","Butyric acid"],
+   answer:0, hint:"4C acid.",
+   explanation:"4 carbons, -COOH → Butanoic acid"},
+
+  {id:56, type:"acid", qtype:"formula", diff:"medium", year:"2009",
+   question:"Give IUPAC name:",
+   formula:"HOOC-COOH",
+   options:["Ethanedioic acid","Oxalic acid","Methanoic acid dimer","Ethanoic acid"],
+   answer:0, hint:"2C with COOH at each end.",
+   explanation:"2 carbons, two -COOH groups → Ethanedioic acid (common: oxalic acid)"},
+
+  {id:57, type:"acid", qtype:"formula", diff:"hard", year:"2012",
+   question:"Name:",
+   formula:"CH₃-CH(CH₃)-COOH",
+   options:["2-Methylpropanoic acid","2-Methylpropan-1-oic acid","Isobutyric acid","3-Methylpropanoic acid"],
+   answer:0, hint:"3C parent (propanoic acid); methyl at C2.",
+   explanation:"3C parent chain (propanoic acid); methyl at C2 → 2-Methylpropanoic acid"},
+
+  {id:58, type:"acid", qtype:"formula", diff:"hard", year:"2014",
+   question:"Give IUPAC name:",
+   formula:"CH₂(COOH)₂-CH₂",
+   options:["Propanedioic acid","Malonic acid","1,3-Propanedioic acid","Ethanedioic acid"],
+   answer:0, hint:"3C with COOH at C1 and C3.",
+   explanation:"3C backbone, COOH at both ends → Propanedioic acid (common: malonic acid)"},
+
+  {id:59, type:"acid", qtype:"formula", diff:"medium", year:"2016",
+   question:"Name the compound:",
+   formula:"CH₂=CH-COOH",
+   options:["Propenoic acid","But-2-enoic acid","Acrylic acid","Prop-1-enoic acid"],
+   answer:0, hint:"3C; C=C at C2; COOH at C1.",
+   explanation:"3C, double bond at C2, -COOH → Propenoic acid (also called prop-2-enoic acid or acrylic acid)"},
+
+  {id:60, type:"acid", qtype:"name", diff:"easy", year:"2002",
+   question:"Write structural formula of Ethanoic acid:",
+   formula:"",
+   options:["CH₃COOH","HCOOH","CH₃CH₂COOH","CH₃CHO"],
+   answer:0, hint:"Eth = 2C, -oic acid = COOH.",
+   explanation:"Ethanoic acid: CH₃COOH"},
+
+  // ---- HALOALKANES ----
+  {id:61, type:"haloalkane", qtype:"formula", diff:"easy", year:"2003",
+   question:"Give IUPAC name:",
+   formula:"CH₃Cl",
+   options:["Chloromethane","Methyl chloride","Chloroethane","Dichloromethane"],
+   answer:0, hint:"1C + Cl.",
+   explanation:"1 carbon with Cl → Chloromethane"},
+
+  {id:62, type:"haloalkane", qtype:"formula", diff:"easy", year:"2005",
+   question:"Name:",
+   formula:"CH₃-CH₂-Cl",
+   options:["Chloroethane","Chloromethane","1-Chloropropane","Dichloroethane"],
+   answer:0, hint:"2C + Cl.",
+   explanation:"2 carbons, Cl on C1 → Chloroethane"},
+
+  {id:63, type:"haloalkane", qtype:"formula", diff:"medium", year:"2007",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CHCl-CH₃",
+   options:["2-Chloropropane","1-Chloropropane","Propyl chloride","3-Chloropropane"],
+   answer:0, hint:"3C; Cl on C2.",
+   explanation:"3 carbons, Cl at C2 → 2-Chloropropane"},
+
+  {id:64, type:"haloalkane", qtype:"formula", diff:"medium", year:"2009",
+   question:"Name the compound:",
+   formula:"CHCl₃",
+   options:["Trichloromethane","Chloroform (trivial)","Dichloromethane","Tetrachloromethane"],
+   answer:0, hint:"1C + three Cl atoms.",
+   explanation:"1 carbon with 3 chlorine atoms → Trichloromethane (common: chloroform)"},
+
+  {id:65, type:"haloalkane", qtype:"formula", diff:"medium", year:"2011",
+   question:"Give IUPAC name:",
+   formula:"CCl₄",
+   options:["Tetrachloromethane","Trichloromethane","Carbon tetrachloride","Chloromethane"],
+   answer:0, hint:"1C + four Cl atoms.",
+   explanation:"1 carbon, 4 chlorines → Tetrachloromethane"},
+
+  {id:66, type:"haloalkane", qtype:"formula", diff:"hard", year:"2013",
+   question:"Name:",
+   formula:"CH₂Cl-CH₂Cl",
+   options:["1,2-Dichloroethane","1,1-Dichloroethane","Dichloroethane","Ethylene dichloride"],
+   answer:0, hint:"2C; Cl on each carbon.",
+   explanation:"2 carbons, Cl at C1 and C2 → 1,2-Dichloroethane"},
+
+  {id:67, type:"haloalkane", qtype:"formula", diff:"hard", year:"2015",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CCl₂-CH₃",
+   options:["2,2-Dichloropropane","1,1-Dichloropropane","2-Dichloropropane","Propylidene chloride"],
+   answer:0, hint:"3C; two Cl on C2.",
+   explanation:"3 carbons, two Cl at C2 → 2,2-Dichloropropane"},
+
+  {id:68, type:"haloalkane", qtype:"formula", diff:"hard", year:"2017",
+   question:"Name:",
+   formula:"CH₂=CHCl",
+   options:["Chloroethene","Vinyl chloride","1-Chloroethene","Chloroethane"],
+   answer:0, hint:"2C; C=C; Cl on one end.",
+   explanation:"2 carbons, double bond, Cl at C1 → Chloroethene (common: vinyl chloride)"},
+
+  {id:69, type:"haloalkane", qtype:"formula", diff:"medium", year:"2019",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-Br",
+   options:["1-Bromopropane","2-Bromopropane","Propyl bromide","3-Bromopropane"],
+   answer:0, hint:"3C; Br at C1.",
+   explanation:"3 carbons, Br at C1 → 1-Bromopropane"},
+
+  {id:70, type:"haloalkane", qtype:"formula", diff:"medium", year:"2020",
+   question:"Name the compound:",
+   formula:"CH₃-CHBr-CH₃",
+   options:["2-Bromopropane","1-Bromopropane","2-Bromobutane","Isopropyl bromide"],
+   answer:0, hint:"3C; Br at C2.",
+   explanation:"3 carbons, Br at C2 → 2-Bromopropane"},
+
+  // ---- ESTERS ----
+  {id:71, type:"ester", qtype:"formula", diff:"medium", year:"2004",
+   question:"Give IUPAC name:",
+   formula:"CH₃-COO-CH₃",
+   options:["Methyl ethanoate","Ethyl methanoate","Methyl methanoate","Ethyl ethanoate"],
+   answer:0, hint:"Acid part: CH₃CO = ethanoate; alcohol part: CH₃ = methyl.",
+   explanation:"CH₃COO (ethanoate) + CH₃ (methyl) → Methyl ethanoate"},
+
+  {id:72, type:"ester", qtype:"formula", diff:"medium", year:"2006",
+   question:"Name:",
+   formula:"CH₃-COO-CH₂-CH₃",
+   options:["Ethyl ethanoate","Methyl propanoate","Ethyl methanoate","Propyl methanoate"],
+   answer:0, hint:"Acid: CH₃CO = ethanoate; alcohol: C₂H₅ = ethyl.",
+   explanation:"Ethanoate + ethyl → Ethyl ethanoate (ethyl acetate)"},
+
+  {id:73, type:"ester", qtype:"formula", diff:"hard", year:"2010",
+   question:"Give IUPAC name:",
+   formula:"HCOO-CH₃",
+   options:["Methyl methanoate","Methyl ethanoate","Methyl formate","Ethyl methanoate"],
+   answer:0, hint:"Acid: HCOO = methanoate; alcohol: CH₃ = methyl.",
+   explanation:"Methanoate + methyl → Methyl methanoate"},
+
+  {id:74, type:"ester", qtype:"formula", diff:"hard", year:"2012",
+   question:"Name:",
+   formula:"CH₃-CH₂-COO-CH₂-CH₃",
+   options:["Ethyl propanoate","Propyl ethanoate","Methyl butanoate","Ethyl ethanoate"],
+   answer:0, hint:"Acid: C₂H₅CO = propanoate; alcohol: C₂H₅ = ethyl.",
+   explanation:"Propanoate + ethyl → Ethyl propanoate"},
+
+  {id:75, type:"ester", qtype:"name", diff:"medium", year:"2008",
+   question:"Write structural formula of Ethyl ethanoate:",
+   formula:"",
+   options:["CH₃-COO-CH₂CH₃","HCOO-CH₂CH₃","CH₃COO-CH₃","CH₃CH₂COO-CH₃"],
+   answer:0, hint:"Ethyl = C₂H₅; ethanoate = CH₃COO.",
+   explanation:"Ethyl ethanoate: CH₃COOC₂H₅"},
+
+  // ---- MIXED/COMPLEX ----
+  {id:76, type:"mixed", qtype:"formula", diff:"medium", year:"2007",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(OH)-CHO",
+   options:["2-Hydroxypropanal","3-Hydroxypropanal","Lactic aldehyde","Propan-2-ol-1-al"],
+   answer:0, hint:"3C; -OH at C2; -CHO at C1. Principal group = aldehyde.",
+   explanation:"3C; aldehyde is principal group at C1; OH at C2 → 2-Hydroxypropanal"},
+
+  {id:77, type:"mixed", qtype:"formula", diff:"hard", year:"2011",
+   question:"Name:",
+   formula:"HOOC-CH₂-COOH",
+   options:["Propanedioic acid","Malonic acid","Ethane-1,2-dioic acid","Oxaloacetic acid"],
+   answer:0, hint:"3C with COOH at C1 and C3.",
+   explanation:"3C chain, two -COOH groups → Propanedioic acid"},
+
+  {id:78, type:"mixed", qtype:"formula", diff:"hard", year:"2014",
+   question:"Give IUPAC name:",
+   formula:"CH₂OH-CHOH-CHO",
+   options:["2,3-Dihydroxypropanol (Glyceraldehyde)","2,3-Dihydroxypropanal","3-Hydroxy-2-hydroxypropan-1-al","Glycerose"],
+   answer:1, hint:"3C; CHO at C1 (principal); OH at C2 and C3.",
+   explanation:"3C; CHO is principal at C1; OH at C2 and C3 → 2,3-Dihydroxypropanal"},
+
+  {id:79, type:"mixed", qtype:"formula", diff:"hard", year:"2016",
+   question:"Name the compound:",
+   formula:"CH₃-CH(Cl)-COOH",
+   options:["2-Chloropropanoic acid","3-Chloropropanoic acid","Chloropropionic acid","2-Chloro-1-propanoic acid"],
+   answer:0, hint:"3C; COOH at C1 (principal); Cl at C2.",
+   explanation:"3C acid; Cl at C2 → 2-Chloropropanoic acid"},
+
+  {id:80, type:"mixed", qtype:"formula", diff:"hard", year:"2018",
+   question:"Give IUPAC name:",
+   formula:"CH₂OH-CH₂-COOH",
+   options:["3-Hydroxypropanoic acid","2-Hydroxypropanoic acid","Hydracrylic acid","Propanoic acid"],
+   answer:0, hint:"3C; COOH at C1; OH at C3.",
+   explanation:"3C; COOH at C1; OH at C3 → 3-Hydroxypropanoic acid"},
+
+  // ---- MORE ALKANE/ALKENE/ALKYNE ----
+  {id:81, type:"alkane", qtype:"formula", diff:"medium", year:"2022",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH(CH₃)-CH₃",
+   options:["2-Methylbutane","3-Methylbutane","Isopentane","Pentane"],
+   answer:0, hint:"5 carbons total; longest chain = 4C; methyl at C2.",
+   explanation:"Longest chain = 4C (butane); methyl at C2 → 2-Methylbutane"},
+
+  {id:82, type:"alkane", qtype:"formula", diff:"hard", year:"2023",
+   question:"Name the compound:",
+   formula:"CH₃-CH(C₂H₅)-CH₂-CH₃",
+   options:["3-Methylpentane","2-Ethylbutane","3-Ethylbutane","Hexane (wrong parent)"],
+   answer:0, hint:"Longest chain = 5C; ethyl branch counted into chain.",
+   explanation:"Longest chain through branch = 5C (pentane); methyl at C3 → 3-Methylpentane"},
+
+  {id:83, type:"alkene", qtype:"formula", diff:"medium", year:"2021",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH=CH₂",
+   options:["But-1-ene","But-2-ene","Butene","1-Butene"],
+   answer:0, hint:"4C; double bond at C1.",
+   explanation:"4 carbons, C=C at C1 → But-1-ene"},
+
+  {id:84, type:"alkene", qtype:"formula", diff:"hard", year:"2022",
+   question:"Name:",
+   formula:"CH₂=C(CH₃)-CH₂-CH₃",
+   options:["2-Methylbut-1-ene","2-Methylbut-2-ene","3-Methylbut-1-ene","Butene"],
+   answer:0, hint:"5C total; longest chain including the C=C = 4C; methyl at C2; double bond at C1.",
+   explanation:"4C chain; C=C at C1; methyl at C2 → 2-Methylbut-1-ene"},
+
+  {id:85, type:"alkene", qtype:"formula", diff:"hard", year:"2023",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C(CH₃)=CH-CH₃",
+   options:["2-Methylbut-2-ene","3-Methylbut-2-ene","2-Methylbut-3-ene","Pentene"],
+   answer:0, hint:"5C total; longest chain = 4C (but-2-ene); methyl at C2.",
+   explanation:"4C parent; C=C at C2; methyl at C2 → 2-Methylbut-2-ene"},
+
+  {id:86, type:"alcohol", qtype:"formula", diff:"medium", year:"2021",
+   question:"Name:",
+   formula:"CH₃-CH(OH)-CH₂-CH₂-CH₃",
+   options:["Pentan-2-ol","Pentan-3-ol","2-Pentanol","Hexan-2-ol"],
+   answer:0, hint:"5C; -OH at C2.",
+   explanation:"5 carbons, -OH at C2 → Pentan-2-ol"},
+
+  {id:87, type:"alcohol", qtype:"formula", diff:"hard", year:"2022",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH(OH)-CH₂-CH₃",
+   options:["Pentan-3-ol","Pentan-2-ol","3-Pentanol","Hexan-3-ol"],
+   answer:0, hint:"5C; -OH in the middle at C3.",
+   explanation:"5 carbons, -OH at C3 → Pentan-3-ol"},
+
+  {id:88, type:"acid", qtype:"formula", diff:"medium", year:"2020",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-COOH",
+   options:["Pentanoic acid","Butanoic acid","Hexanoic acid","Valeric acid"],
+   answer:0, hint:"5C acid.",
+   explanation:"5 carbons, -COOH → Pentanoic acid"},
+
+  {id:89, type:"acid", qtype:"formula", diff:"hard", year:"2021",
+   question:"Give IUPAC name:",
+   formula:"(CH₃)₂CH-COOH",
+   options:["2-Methylpropanoic acid","3-Methylpropanoic acid","Isobutyric acid","Butanoic acid"],
+   answer:0, hint:"3C parent (propanoic acid); methyl at C2.",
+   explanation:"3C parent; methyl at C2 → 2-Methylpropanoic acid"},
+
+  {id:90, type:"haloalkane", qtype:"formula", diff:"medium", year:"2021",
+   question:"Name:",
+   formula:"CH₂Br₂",
+   options:["Dibromomethane","1,1-Dibromomethane","Methylene bromide","Methyl dibromide"],
+   answer:0, hint:"1C + two Br atoms.",
+   explanation:"1 carbon, 2 Br atoms → Dibromomethane"},
+
+  // ---- MORE QUESTIONS (91–150) ----
+  {id:91, type:"alkane", qtype:"formula", diff:"easy", year:"1999",
+   question:"Give IUPAC name:",
+   formula:"CH₄",
+   options:["Methane","Ethane","Propane","Butane"],
+   answer:0, hint:"1 carbon atom only.",
+   explanation:"1 carbon → Methane"},
+
+  {id:92, type:"alkyne", qtype:"formula", diff:"medium", year:"2000",
+   question:"Name this compound:",
+   formula:"CH₃-CH₂-C≡CH",
+   options:["But-1-yne","But-2-yne","Butyne","1-Butyne"],
+   answer:0, hint:"4C; triple bond at C1.",
+   explanation:"4 carbons, triple bond at C1 → But-1-yne"},
+
+  {id:93, type:"alkyne", qtype:"formula", diff:"hard", year:"2002",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C≡C-CH₂-CH₂-CH₃",
+   options:["Hex-2-yne","Hex-4-yne","Hex-3-yne","2-Hexyne"],
+   answer:0, hint:"6C; triple bond at C2.",
+   explanation:"6 carbons, C≡C at C2 → Hex-2-yne"},
+
+  {id:94, type:"alcohol", qtype:"formula", diff:"hard", year:"2001",
+   question:"Name:",
+   formula:"CH₃-CH(CH₃)-CH₂-OH",
+   options:["2-Methylpropan-1-ol","2-Methylpropan-2-ol","Butan-1-ol","Isobutanol"],
+   answer:0, hint:"4C total; longest chain = 3C (propan-1-ol); methyl at C2.",
+   explanation:"3C parent chain; -OH at C1; methyl at C2 → 2-Methylpropan-1-ol"},
+
+  {id:95, type:"ketone", qtype:"formula", diff:"hard", year:"2006",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CO-CH₂-CH₂-CH₂-CH₃",
+   options:["Hexan-2-one","Hexan-5-one","Pentan-2-one (wrong C count)","Heptan-2-one"],
+   answer:0, hint:"6C; C=O at C2.",
+   explanation:"6 carbons, carbonyl at C2 → Hexan-2-one"},
+
+  {id:96, type:"aldehyde", qtype:"formula", diff:"hard", year:"2008",
+   question:"Name the compound:",
+   formula:"CH₃-CH₂-CH(CH₃)-CHO",
+   options:["2-Methylbutanal","3-Methylbutanal","2-Ethylpropanal","Pentanal"],
+   answer:0, hint:"4C parent (butanal); methyl at C2.",
+   explanation:"4C parent chain (butanal); methyl at C2 → 2-Methylbutanal"},
+
+  {id:97, type:"mixed", qtype:"formula", diff:"hard", year:"2009",
+   question:"Give IUPAC name:",
+   formula:"Cl-CH₂-CH₂-OH",
+   options:["2-Chloroethanol","1-Chloroethanol","Chloroethanol","Ethylene chlorohydrin"],
+   answer:0, hint:"2C; OH at C1 (principal group); Cl at C2.",
+   explanation:"2C; -OH is principal group at C1; Cl at C2 → 2-Chloroethanol"},
+
+  {id:98, type:"mixed", qtype:"formula", diff:"hard", year:"2010",
+   question:"Name:",
+   formula:"CH₃-CH(Cl)-CH₂-OH",
+   options:["2-Chloropropan-1-ol","1-Chloropropan-2-ol","2-Chloro-1-propanol","3-Chloropropanol"],
+   answer:0, hint:"3C; -OH at C1 (principal); Cl at C2.",
+   explanation:"3C; -OH at C1; Cl at C2 → 2-Chloropropan-1-ol"},
+
+  {id:99, type:"alkene", qtype:"formula", diff:"medium", year:"1999",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH=CH-CH₂-CH₃",
+   options:["Hex-3-ene","Hex-2-ene","Hex-4-ene","3-Hexene"],
+   answer:0, hint:"6C; double bond at C3.",
+   explanation:"6 carbons, C=C at C3 → Hex-3-ene"},
+
+  {id:100, type:"acid", qtype:"formula", diff:"hard", year:"1999",
+   question:"Name:",
+   formula:"CH₂=CH-CH₂-COOH",
+   options:["But-3-enoic acid","But-2-enoic acid","Butenoic acid","Vinyl acetic acid"],
+   answer:0, hint:"4C acid; double bond at C3.",
+   explanation:"4C, -COOH at C1, C=C at C3 → But-3-enoic acid"},
+
+  // ---- QUESTIONS 101–150 ----
+  {id:101, type:"alkane", qtype:"formula", diff:"medium", year:"2024",
+   question:"Give IUPAC name:",
+   formula:"CH₃-(CH₂)₄-CH₃",
+   options:["Hexane","Pentane","Heptane","Octane"],
+   answer:0, hint:"Count total carbons: 6.",
+   explanation:"6 carbons in straight chain → Hexane"},
+
+  {id:102, type:"alkane", qtype:"formula", diff:"hard", year:"2024",
+   question:"Name the compound:",
+   formula:"CH₃-C(CH₃)(CH₃)-CH₂-CH₃",
+   options:["2,2-Dimethylbutane","2,3-Dimethylbutane","3,3-Dimethylbutane","Hexane"],
+   answer:0, hint:"4C longest chain; two methyls at C2.",
+   explanation:"4C parent chain; two methyls at C2 → 2,2-Dimethylbutane"},
+
+  {id:103, type:"alkene", qtype:"name", diff:"medium", year:"2003",
+   question:"Write structural formula of But-2-ene:",
+   formula:"",
+   options:["CH₃-CH=CH-CH₃","CH₂=CH-CH₂-CH₃","CH₃-CH₂-CH=CH₂","CH₂=CH₂"],
+   answer:0, hint:"But = 4C; double bond at C2.",
+   explanation:"But-2-ene: CH₃CH=CHCH₃"},
+
+  {id:104, type:"alkyne", qtype:"name", diff:"medium", year:"2005",
+   question:"Write structural formula of But-1-yne:",
+   formula:"",
+   options:["HC≡C-CH₂-CH₃","CH₃-C≡C-CH₃","CH₃-CH₂-C≡CH","HC≡CH"],
+   answer:0, hint:"But = 4C; triple bond starting at C1.",
+   explanation:"But-1-yne: HC≡CCH₂CH₃"},
+
+  {id:105, type:"alcohol", qtype:"name", diff:"medium", year:"2006",
+   question:"Write structural formula of Butan-2-ol:",
+   formula:"",
+   options:["CH₃-CH(OH)-CH₂-CH₃","CH₃CH₂CH₂CH₂OH","CH₃-CO-CH₃","CH₃CH(CH₃)OH"],
+   answer:0, hint:"But = 4C; -ol at C2.",
+   explanation:"Butan-2-ol: CH₃CH(OH)CH₂CH₃"},
+
+  {id:106, type:"aldehyde", qtype:"name", diff:"medium", year:"2007",
+   question:"Write structural formula of Butanal:",
+   formula:"",
+   options:["CH₃-CH₂-CH₂-CHO","CH₃-CHO","CH₃-CO-CH₃","CH₃-CH₂-CO-CH₃"],
+   answer:0, hint:"But = 4C; -al = CHO at end.",
+   explanation:"Butanal: CH₃CH₂CH₂CHO"},
+
+  {id:107, type:"ketone", qtype:"name", diff:"medium", year:"2008",
+   question:"Write structural formula of Butan-2-one:",
+   formula:"",
+   options:["CH₃-CO-CH₂-CH₃","CH₃-CH₂-CO-CH₂-CH₃","CH₃-CO-CH₃","CH₃-CHO"],
+   answer:0, hint:"But = 4C; -one (ketone) at C2.",
+   explanation:"Butan-2-one: CH₃COCH₂CH₃"},
+
+  {id:108, type:"acid", qtype:"name", diff:"medium", year:"2009",
+   question:"Write structural formula of Propanoic acid:",
+   formula:"",
+   options:["CH₃-CH₂-COOH","CH₃-COOH","HCOOH","CH₃-CH₂-CH₂-COOH"],
+   answer:0, hint:"Prop = 3C; -oic acid = COOH.",
+   explanation:"Propanoic acid: CH₃CH₂COOH"},
+
+  {id:109, type:"haloalkane", qtype:"name", diff:"medium", year:"2010",
+   question:"Write structural formula of 1-Chloropropane:",
+   formula:"",
+   options:["CH₃-CH₂-CH₂-Cl","CH₃-CHCl-CH₃","CH₃-CH₂-Cl","Cl-CH₂-CH₂-Cl"],
+   answer:0, hint:"Prop = 3C; Cl at C1.",
+   explanation:"1-Chloropropane: CH₃CH₂CH₂Cl"},
+
+  {id:110, type:"ester", qtype:"name", diff:"hard", year:"2011",
+   question:"Write structural formula of Methyl propanoate:",
+   formula:"",
+   options:["CH₃-CH₂-COO-CH₃","CH₃-COO-CH₃","HCOO-CH₃","CH₃-CH₂-COO-CH₂-CH₃"],
+   answer:0, hint:"Propanoate = CH₃CH₂COO; methyl = CH₃.",
+   explanation:"Methyl propanoate: CH₃CH₂COOCH₃"},
+
+  {id:111, type:"alkane", qtype:"formula", diff:"medium", year:"2000",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-CH₃",
+   options:["Hexane","Pentane","Heptane","Octane"],
+   answer:0, hint:"6 carbons in a row.",
+   explanation:"6 carbons → Hexane"},
+
+  {id:112, type:"alkane", qtype:"formula", diff:"hard", year:"2001",
+   question:"Name:",
+   formula:"CH₃-CH(C₂H₅)-CH₂-CH₂-CH₃",
+   options:["3-Methylhexane","2-Ethylpentane","3-Ethylpentane","Heptane"],
+   answer:0, hint:"Longest chain: 6C; methyl at C3.",
+   explanation:"Longest chain = 6C through ethyl branch; substituent = methyl at C3 → 3-Methylhexane"},
+
+  {id:113, type:"alkene", qtype:"formula", diff:"hard", year:"2003",
+   question:"Give IUPAC name:",
+   formula:"CH₂=CH-CH₂-CH=CH₂",
+   options:["Penta-1,4-diene","Penta-1,3-diene","Penta-2,4-diene","Cyclopentadiene"],
+   answer:0, hint:"5C; double bonds at C1 and C4.",
+   explanation:"5C, two C=C bonds at C1 and C4 → Penta-1,4-diene"},
+
+  {id:114, type:"mixed", qtype:"formula", diff:"hard", year:"2005",
+   question:"Name:",
+   formula:"HOOC-CH=CH-COOH",
+   options:["But-2-enedioic acid","Maleic/fumaric acid","Butenedioic acid","2-Butenedioic acid"],
+   answer:0, hint:"4C with COOH at both ends; C=C at C2.",
+   explanation:"4C; COOH at C1 and C4; C=C at C2-C3 → But-2-enedioic acid"},
+
+  {id:115, type:"mixed", qtype:"formula", diff:"hard", year:"2006",
+   question:"Give IUPAC name:",
+   formula:"CH₂OH-CO-CH₂OH",
+   options:["1,3-Dihydroxypropan-2-one","Dihydroxyacetone","1,3-Dihydroxyacetone","Propan-2-one-1,3-diol"],
+   answer:0, hint:"3C; OH at C1 and C3; C=O at C2.",
+   explanation:"3C; C=O at C2 (principal); OH at C1 and C3 → 1,3-Dihydroxypropan-2-one"},
+
+  {id:116, type:"alkane", qtype:"formula", diff:"easy", year:"2006",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-CH₂-CH₃",
+   options:["Heptane","Hexane","Octane","Nonane"],
+   answer:0, hint:"Count: 7 carbons.",
+   explanation:"7 carbons → Heptane"},
+
+  {id:117, type:"alkyne", qtype:"formula", diff:"medium", year:"2001",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-C≡CH",
+   options:["Pent-1-yne","Pent-4-yne","Pentyne","1-Pentyne"],
+   answer:0, hint:"5C; triple bond at C1.",
+   explanation:"5 carbons, triple bond at C1 → Pent-1-yne"},
+
+  {id:118, type:"alcohol", qtype:"formula", diff:"easy", year:"2005",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-OH",
+   options:["Pentan-1-ol","Pentan-2-ol","Butanol","Hexanol"],
+   answer:0, hint:"5C; -OH at C1.",
+   explanation:"5 carbons, -OH at C1 → Pentan-1-ol"},
+
+  {id:119, type:"aldehyde", qtype:"formula", diff:"medium", year:"2001",
+   question:"Give IUPAC name:",
+   formula:"CH₃-(CH₂)₃-CHO",
+   options:["Pentanal","Butanal","Hexanal","Propanal"],
+   answer:0, hint:"5C aldehyde.",
+   explanation:"5 carbons, -CHO → Pentanal"},
+
+  {id:120, type:"acid", qtype:"formula", diff:"easy", year:"2007",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-COOH",
+   options:["Hexanoic acid","Pentanoic acid","Heptanoic acid","Caproic acid"],
+   answer:0, hint:"6C acid.",
+   explanation:"6 carbons, -COOH → Hexanoic acid"},
+
+  // Questions 121–150
+  {id:121, type:"alkane", qtype:"formula", diff:"hard", year:"2020",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C(CH₃)₂-C(CH₃)₂-CH₃",
+   options:["2,2,3,3-Tetramethylbutane","2,2-Dimethylpropane","Octane","2,3-Dimethylhexane"],
+   answer:0, hint:"4C parent; two methyls each at C2 and C3.",
+   explanation:"4C parent chain (butane); two methyls at C2 and C3 → 2,2,3,3-Tetramethylbutane"},
+
+  {id:122, type:"alkene", qtype:"formula", diff:"hard", year:"2019",
+   question:"Name:",
+   formula:"CH₃-CH=CH-CH=CH₂",
+   options:["Penta-1,3-diene","Penta-1,4-diene","Penta-2,4-diene","1,3-Pentadiene"],
+   answer:0, hint:"5C; C=C at C1 and C3. Number to give lowest locants.",
+   explanation:"5C; C=C at C1-C2 and C3-C4 → Penta-1,3-diene"},
+
+  {id:123, type:"mixed", qtype:"formula", diff:"hard", year:"2019",
+   question:"Give IUPAC name:",
+   formula:"CH₂=CH-CH₂-OH",
+   options:["Prop-2-en-1-ol","Prop-1-en-3-ol","Allyl alcohol","2-Propenol"],
+   answer:0, hint:"3C; -OH at C1 (principal); C=C at C2.",
+   explanation:"3C; -OH at C1; C=C at C2-C3 → Prop-2-en-1-ol"},
+
+  {id:124, type:"mixed", qtype:"formula", diff:"hard", year:"2020",
+   question:"Name:",
+   formula:"HC≡C-CH₂-OH",
+   options:["Prop-2-yn-1-ol","Prop-1-yn-3-ol","Propargyl alcohol","3-Hydroxypropyne"],
+   answer:0, hint:"3C; -OH at C1 (principal); triple bond at C2.",
+   explanation:"3C; -OH at C1; C≡C at C2-C3 → Prop-2-yn-1-ol"},
+
+  {id:125, type:"haloalkane", qtype:"formula", diff:"hard", year:"2022",
+   question:"Give IUPAC name:",
+   formula:"CHBrCl₂",
+   options:["Bromochloromethane (1C with Br+2Cl: actually dichlorobromomethane)","Bromodichloromethane","Chlorodibromomethane","Trihalomethane"],
+   answer:1, hint:"1C; one Br and two Cl atoms; name in alphabetical order.",
+   explanation:"1 carbon, 1 Br and 2 Cl → Bromodichloromethane"},
+
+  {id:126, type:"alkane", qtype:"formula", diff:"medium", year:"2017",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-CH₂-CH₂-CH₃",
+   options:["Octane","Heptane","Nonane","Decane"],
+   answer:0, hint:"Count: 8 carbons.",
+   explanation:"8 carbons → Octane"},
+
+  {id:127, type:"alcohol", qtype:"formula", diff:"medium", year:"2017",
+   question:"Give IUPAC name:",
+   formula:"(CH₃)₂C(OH)-CH₂-CH₃",
+   options:["2-Methylbutan-2-ol","2-Methylbutan-1-ol","3-Methylbutan-2-ol","tert-Amyl alcohol"],
+   answer:0, hint:"5C total; longest chain = 4C (butan-2-ol); methyl at C2.",
+   explanation:"4C parent; -OH at C2; methyl at C2 → 2-Methylbutan-2-ol"},
+
+  {id:128, type:"aldehyde", qtype:"formula", diff:"hard", year:"2020",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH(CH₃)-CH₂-CHO",
+   options:["3-Methylpentanal","4-Methylpentanal","2-Methylpentanal","3-Methylbutanal"],
+   answer:0, hint:"5C parent (pentanal); methyl at C3.",
+   explanation:"5C chain (pentanal); methyl at C3 → 3-Methylpentanal"},
+
+  {id:129, type:"ketone", qtype:"formula", diff:"hard", year:"2021",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CO-CH(CH₃)-CH₃",
+   options:["4-Methylpentan-3-one","2-Methylpentan-3-one","Pentan-3-one","3-Methylpentan-2-one"],
+   answer:0, hint:"5C parent (pentan-3-one); methyl at C4.",
+   explanation:"5C parent; C=O at C3; methyl at C4 → 4-Methylpentan-3-one"},
+
+  {id:130, type:"acid", qtype:"formula", diff:"hard", year:"2022",
+   question:"Name:",
+   formula:"CH₃-CH=CH-COOH",
+   options:["But-2-enoic acid","But-3-enoic acid","Crotonic acid","Butenoic acid"],
+   answer:0, hint:"4C; COOH at C1; C=C at C2-C3.",
+   explanation:"4C; COOH at C1; C=C at C2 → But-2-enoic acid"},
+
+  {id:131, type:"alkane", qtype:"formula", diff:"easy", year:"2023",
+   question:"Give IUPAC name:",
+   formula:"CH₃-(CH₂)₆-CH₃",
+   options:["Octane","Heptane","Nonane","Hexane"],
+   answer:0, hint:"Count the carbons: 8.",
+   explanation:"8 carbons → Octane"},
+
+  {id:132, type:"alkene", qtype:"formula", diff:"medium", year:"2023",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH=CH₂",
+   options:["Pent-1-ene","Pent-4-ene","Pentene","1-Pentene"],
+   answer:0, hint:"5C; C=C at C1.",
+   explanation:"5 carbons, C=C at C1 → Pent-1-ene"},
+
+  {id:133, type:"alkyne", qtype:"formula", diff:"medium", year:"2024",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-C≡CH",
+   options:["Hex-1-yne","Hex-5-yne","Hexyne","1-Hexyne"],
+   answer:0, hint:"6C; triple bond at C1.",
+   explanation:"6 carbons, C≡C at C1 → Hex-1-yne"},
+
+  {id:134, type:"alcohol", qtype:"formula", diff:"medium", year:"2024",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH(OH)-CH₃",
+   options:["Pentan-2-ol","Pentan-4-ol","Pentan-3-ol","Butan-2-ol"],
+   answer:0, hint:"5C; -OH at C2 (number from nearest end to OH).",
+   explanation:"5 carbons; -OH at C2 → Pentan-2-ol"},
+
+  {id:135, type:"haloalkane", qtype:"formula", diff:"easy", year:"2024",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-I",
+   options:["Iodoethane","Iodopropane","Ethyl iodide","Ethane"],
+   answer:0, hint:"2C + iodine.",
+   explanation:"2 carbons, I atom → Iodoethane"},
+
+  {id:136, type:"mixed", qtype:"formula", diff:"medium", year:"2023",
+   question:"Name:",
+   formula:"BrCH₂-CH₂-Br",
+   options:["1,2-Dibromoethane","1,1-Dibromoethane","Ethylene dibromide","Dibromoethane"],
+   answer:0, hint:"2C; Br at C1 and C2.",
+   explanation:"2C, Br at each carbon → 1,2-Dibromoethane"},
+
+  {id:137, type:"acid", qtype:"formula", diff:"medium", year:"2023",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH(OH)-COOH",
+   options:["2-Hydroxybutanoic acid","3-Hydroxybutanoic acid","Hydroxybutyric acid","2-Hydroxy-1-butanoic acid"],
+   answer:1, hint:"4C; COOH at C1; OH at C3.",
+   explanation:"4C; COOH at C1; OH at C3 → 3-Hydroxybutanoic acid"},
+
+  {id:138, type:"alkene", qtype:"formula", diff:"medium", year:"2002",
+   question:"Name:",
+   formula:"CH₃-CH=CH₂",
+   options:["Propene","Propyne","Prop-2-ene","Butene"],
+   answer:0, hint:"3C; C=C starting at C1.",
+   explanation:"3C, C=C at C1 → Propene (= prop-1-ene)"},
+
+  {id:139, type:"alkene", qtype:"formula", diff:"hard", year:"2001",
+   question:"Give IUPAC name:",
+   formula:"CH₂=CH-CH₂-CH₂-CH₂-CH₃",
+   options:["Hex-1-ene","Hex-5-ene","Hexene","1-Hexene"],
+   answer:0, hint:"6C; C=C at C1.",
+   explanation:"6 carbons, C=C at C1 → Hex-1-ene"},
+
+  {id:140, type:"alkyne", qtype:"formula", diff:"hard", year:"2000",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-C≡C-CH₃",
+   options:["Hex-2-yne","Hex-4-yne","Hex-3-yne","2-Hexyne"],
+   answer:0, hint:"6C; triple bond at C2 (number from nearest end).",
+   explanation:"6C, C≡C at C2 → Hex-2-yne"},
+
+  {id:141, type:"alcohol", qtype:"formula", diff:"medium", year:"2002",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-OH",
+   options:["Propan-1-ol","Propan-2-ol","Butan-1-ol","Propanol"],
+   answer:0, hint:"3C; OH at C1.",
+   explanation:"3C, -OH at C1 → Propan-1-ol"},
+
+  {id:142, type:"ketone", qtype:"formula", diff:"medium", year:"2003",
+   question:"Name:",
+   formula:"CH₃-CH₂-CO-CH₃",
+   options:["Butan-2-one","Butan-3-one","Pentan-2-one","Butanone"],
+   answer:0, hint:"4C; C=O at C2 (number from nearest end).",
+   explanation:"4C, C=O at C2 → Butan-2-one"},
+
+  {id:143, type:"aldehyde", qtype:"formula", diff:"easy", year:"2008",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-CHO",
+   options:["Hexanal","Pentanal","Heptanal","Propanal"],
+   answer:0, hint:"6C aldehyde.",
+   explanation:"6 carbons, -CHO → Hexanal"},
+
+  {id:144, type:"acid", qtype:"formula", diff:"medium", year:"2008",
+   question:"Name:",
+   formula:"CH₃-CH(OH)-COOH",
+   options:["2-Hydroxypropanoic acid","3-Hydroxypropanoic acid","Lactic acid","2-Hydroxy-1-propanoic acid"],
+   answer:0, hint:"3C; COOH at C1; OH at C2.",
+   explanation:"3C; COOH at C1; OH at C2 → 2-Hydroxypropanoic acid (lactic acid)"},
+
+  {id:145, type:"haloalkane", qtype:"formula", diff:"medium", year:"2008",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-Cl",
+   options:["1-Chlorobutane","2-Chlorobutane","Butyl chloride","4-Chlorobutane"],
+   answer:0, hint:"4C; Cl at C1.",
+   explanation:"4C, Cl at C1 → 1-Chlorobutane"},
+
+  {id:146, type:"ester", qtype:"formula", diff:"hard", year:"2013",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-COO-CH₃",
+   options:["Methyl butanoate","Methyl propanoate","Ethyl propanoate","Butyl methanoate"],
+   answer:0, hint:"Acid: C₃H₇COO = butanoate; alcohol: CH₃ = methyl.",
+   explanation:"Butanoate + methyl → Methyl butanoate"},
+
+  {id:147, type:"mixed", qtype:"formula", diff:"hard", year:"2013",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CO-CH₂-COOH",
+   options:["3-Oxobutanoic acid","2-Oxobutanoic acid","Acetoacetic acid","3-Ketobutanoic acid"],
+   answer:0, hint:"4C; COOH at C1; C=O (keto) at C3.",
+   explanation:"4C; COOH at C1; C=O at C3 → 3-Oxobutanoic acid"},
+
+  {id:148, type:"alkane", qtype:"formula", diff:"hard", year:"2021",
+   question:"Name:",
+   formula:"CH₃-CH(CH₃)-CH(CH₃)-CH₂-CH₃",
+   options:["2,3-Dimethylpentane","2,3-Dimethylbutane","2-Methylhexane","3,4-Dimethylpentane"],
+   answer:0, hint:"5C parent chain; methyls at C2 and C3.",
+   explanation:"5C parent; methyls at C2 and C3 → 2,3-Dimethylpentane"},
+
+  {id:149, type:"alkene", qtype:"formula", diff:"hard", year:"2022",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C(CH₃)=C(CH₃)-CH₃",
+   options:["2,3-Dimethylbut-2-ene","2,3-Dimethylbut-1-ene","Dimethylbutene","2,3-Dimethyl-2-butene"],
+   answer:0, hint:"4C parent; two methyls at C2 and C3; C=C at C2.",
+   explanation:"4C; C=C at C2; methyls at C2 and C3 → 2,3-Dimethylbut-2-ene"},
+
+  {id:150, type:"acid", qtype:"formula", diff:"hard", year:"2019",
+   question:"Name:",
+   formula:"HOOC-CH₂-CH₂-COOH",
+   options:["Butanedioic acid","Propanedioic acid","Succinic acid","Ethanedioic acid"],
+   answer:0, hint:"4C with COOH at C1 and C4.",
+   explanation:"4C chain, COOH at both ends → Butanedioic acid (succinic acid)"},
+
+  // ---- QUESTIONS 151–200+ ----
+  {id:151, type:"alkane", qtype:"formula", diff:"easy", year:"2015",
+   question:"Give IUPAC name:",
+   formula:"CH₃-(CH₂)₇-CH₃",
+   options:["Nonane","Octane","Decane","Heptane"],
+   answer:0, hint:"Count: 9 carbons.",
+   explanation:"9 carbons → Nonane"},
+
+  {id:152, type:"alkane", qtype:"formula", diff:"easy", year:"2016",
+   question:"Name:",
+   formula:"CH₃-(CH₂)₈-CH₃",
+   options:["Decane","Nonane","Undecane","Octane"],
+   answer:0, hint:"Count: 10 carbons.",
+   explanation:"10 carbons → Decane"},
+
+  {id:153, type:"haloalkane", qtype:"formula", diff:"medium", year:"2016",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-Br",
+   options:["1-Bromopropane","2-Bromopropane","Propyl bromide","3-Bromopropane"],
+   answer:0, hint:"3C; Br at C1.",
+   explanation:"3C, Br at C1 → 1-Bromopropane"},
+
+  {id:154, type:"alcohol", qtype:"formula", diff:"easy", year:"2014",
+   question:"Name:",
+   formula:"C₄H₉OH",
+   options:["Butan-1-ol","Propan-1-ol","Pentan-1-ol","Butanol"],
+   answer:0, hint:"4C; -OH at C1 (primary).",
+   explanation:"4C, -OH at C1 → Butan-1-ol"},
+
+  {id:155, type:"ketone", qtype:"formula", diff:"easy", year:"2015",
+   question:"Give IUPAC name:",
+   formula:"C₂H₅-CO-C₂H₅",
+   options:["Pentan-3-one","Pentan-2-one","Butanone","Diethyl ketone"],
+   answer:0, hint:"5C; C=O in middle at C3.",
+   explanation:"5C, C=O at C3 → Pentan-3-one"},
+
+  {id:156, type:"aldehyde", qtype:"formula", diff:"easy", year:"2014",
+   question:"Name:",
+   formula:"C₃H₇CHO",
+   options:["Butanal","Pentanal","Propanal","Butanol"],
+   answer:0, hint:"C₃H₇ = propyl; + CHO = 4C total → butanal.",
+   explanation:"4 carbons total, -CHO → Butanal"},
+
+  {id:157, type:"mixed", qtype:"formula", diff:"hard", year:"2015",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(NH₂)-COOH",
+   options:["2-Aminopropanoic acid","Alanine","3-Aminopropanoic acid","2-Amino-1-propanoic acid"],
+   answer:0, hint:"3C; COOH at C1; NH₂ at C2.",
+   explanation:"3C; COOH at C1; NH₂ at C2 → 2-Aminopropanoic acid (alanine)"},
+
+  {id:158, type:"mixed", qtype:"formula", diff:"hard", year:"2016",
+   question:"Name:",
+   formula:"H₂N-CH₂-COOH",
+   options:["Aminoethanoic acid","Aminoacetic acid","Glycine","2-Aminoacetic acid"],
+   answer:0, hint:"2C; COOH at C1; NH₂ at C2.",
+   explanation:"2C; COOH at C1; NH₂ at C2 → Aminoethanoic acid (glycine)"},
+
+  {id:159, type:"haloalkane", qtype:"formula", diff:"easy", year:"2018",
+   question:"Give IUPAC name:",
+   formula:"CH₃-F",
+   options:["Fluoromethane","Fluoroethane","Methyl fluoride","Fluorine methane"],
+   answer:0, hint:"1C + F.",
+   explanation:"1 carbon, fluorine → Fluoromethane"},
+
+  {id:160, type:"haloalkane", qtype:"formula", diff:"easy", year:"2019",
+   question:"Name:",
+   formula:"CH₃-I",
+   options:["Iodomethane","Iodoethane","Methyl iodide","Methane"],
+   answer:0, hint:"1C + I.",
+   explanation:"1 carbon, iodine → Iodomethane"},
+
+  {id:161, type:"alkene", qtype:"formula", diff:"medium", year:"2018",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH=CH₂",
+   options:["Hex-1-ene","Hex-5-ene","Hexene","Pent-1-ene"],
+   answer:0, hint:"6C; C=C at C1.",
+   explanation:"6C, C=C at C1 → Hex-1-ene"},
+
+  {id:162, type:"alkyne", qtype:"formula", diff:"medium", year:"2018",
+   question:"Name:",
+   formula:"HC≡C-CH₂-CH₂-CH₃",
+   options:["Pent-1-yne","Pent-4-yne","Pentyne","But-1-yne"],
+   answer:0, hint:"5C; C≡C at C1.",
+   explanation:"5C, triple bond at C1 → Pent-1-yne"},
+
+  {id:163, type:"alcohol", qtype:"formula", diff:"hard", year:"2019",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C(OH)(CH₃)-CH₂-CH₃",
+   options:["2-Methylbutan-2-ol","2-Methylbutan-3-ol","3-Methylbutan-2-ol","2-Methylbutan-1-ol"],
+   answer:0, hint:"4C parent; OH at C2; methyl at C2.",
+   explanation:"4C; -OH at C2; methyl also at C2 → 2-Methylbutan-2-ol"},
+
+  {id:164, type:"acid", qtype:"formula", diff:"medium", year:"2017",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-COOH",
+   options:["Hexanoic acid","Pentanoic acid","Heptanoic acid","Caproic acid"],
+   answer:0, hint:"6C acid.",
+   explanation:"6C, -COOH → Hexanoic acid"},
+
+  {id:165, type:"ester", qtype:"formula", diff:"hard", year:"2016",
+   question:"Give IUPAC name:",
+   formula:"HCOO-CH₂-CH₂-CH₃",
+   options:["Propyl methanoate","Methyl propanoate","Propyl ethanoate","Butyl methanoate"],
+   answer:0, hint:"Acid: HCOO = methanoate; alcohol: C₃H₇ = propyl.",
+   explanation:"Methanoate + propyl → Propyl methanoate"},
+
+  {id:166, type:"ester", qtype:"formula", diff:"hard", year:"2017",
+   question:"Name:",
+   formula:"CH₃-COO-CH(CH₃)₂",
+   options:["Isopropyl ethanoate","Propyl ethanoate","Ethyl ethanoate","Isopropyl methanoate"],
+   answer:0, hint:"Acid: CH₃CO = ethanoate; alcohol: (CH₃)₂CH = isopropyl/1-methylethyl.",
+   explanation:"Ethanoate + isopropyl → Isopropyl ethanoate (also: 1-methylethyl ethanoate)"},
+
+  {id:167, type:"alkane", qtype:"formula", diff:"hard", year:"2019",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(CH₃)-CH₂-CH(CH₃)-CH₃",
+   options:["2,4-Dimethylpentane","2,3-Dimethylpentane","2,4-Dimethylbutane","Hexane"],
+   answer:0, hint:"5C parent; methyls at C2 and C4.",
+   explanation:"5C parent; methyl at C2 and C4 → 2,4-Dimethylpentane"},
+
+  {id:168, type:"mixed", qtype:"formula", diff:"hard", year:"2020",
+   question:"Name:",
+   formula:"HOOC-CH₂-CH₂-CH₂-COOH",
+   options:["Pentanedioic acid","Butanedioic acid","Glutaric acid","Hexanedioic acid"],
+   answer:0, hint:"5C with COOH at both ends.",
+   explanation:"5C, two COOH groups → Pentanedioic acid (glutaric acid)"},
+
+  {id:169, type:"mixed", qtype:"formula", diff:"hard", year:"2021",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(OH)-CH₂-COOH",
+   options:["3-Hydroxybutanoic acid","2-Hydroxybutanoic acid","Hydroxybutyric acid","4-Hydroxybutanoic acid"],
+   answer:0, hint:"4C; COOH at C1; OH at C3.",
+   explanation:"4C; COOH at C1; OH at C3 → 3-Hydroxybutanoic acid"},
+
+  {id:170, type:"alkane", qtype:"formula", diff:"medium", year:"1999",
+   question:"Name:",
+   formula:"CH₃-CH(CH₃)-CH₂-CH₂-CH₃",
+   options:["2-Methylpentane","3-Methylpentane","Isohexane","Hexane"],
+   answer:0, hint:"5C parent; methyl at C2.",
+   explanation:"5C parent; methyl at C2 → 2-Methylpentane"},
+
+  {id:171, type:"alkene", qtype:"formula", diff:"medium", year:"1999",
+   question:"Give IUPAC name:",
+   formula:"CH₂=CH-CH₂-CH₂-CH₂-CH₃",
+   options:["Hex-1-ene","Hex-5-ene","Hept-1-ene","1-Hexene"],
+   answer:0, hint:"6C; C=C at C1.",
+   explanation:"6C, C=C at C1 → Hex-1-ene"},
+
+  {id:172, type:"alcohol", qtype:"formula", diff:"medium", year:"2000",
+   question:"Name:",
+   formula:"HOCH₂-CH₂-CH₂OH",
+   options:["Propane-1,3-diol","Propane-1,2-diol","Glycerol","1,3-Propanediol"],
+   answer:0, hint:"3C; OH at C1 and C3.",
+   explanation:"3C, OH at C1 and C3 → Propane-1,3-diol"},
+
+  {id:173, type:"mixed", qtype:"formula", diff:"hard", year:"2023",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CO-COOH",
+   options:["2-Oxopropanoic acid","3-Oxopropanoic acid","Pyruvic acid","Keto-propanoic acid"],
+   answer:0, hint:"3C; COOH at C1; C=O at C2.",
+   explanation:"3C; COOH at C1; C=O at C2 → 2-Oxopropanoic acid (pyruvic acid)"},
+
+  {id:174, type:"haloalkane", qtype:"formula", diff:"hard", year:"2023",
+   question:"Name:",
+   formula:"CH₂Cl-CHCl-CH₃",
+   options:["1,2-Dichloropropane","1,3-Dichloropropane","2,3-Dichloropropane","Propylene dichloride"],
+   answer:0, hint:"3C; Cl at C1 and C2.",
+   explanation:"3C, Cl at C1 and C2 → 1,2-Dichloropropane"},
+
+  {id:175, type:"acid", qtype:"formula", diff:"hard", year:"2024",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH(CH₃)-CH₂-COOH",
+   options:["3-Methylbutanoic acid","2-Methylbutanoic acid","Isovaleric acid","3-Methylpropanoic acid"],
+   answer:0, hint:"4C parent; methyl at C3.",
+   explanation:"4C parent (butanoic acid); methyl at C3 → 3-Methylbutanoic acid"},
+
+  {id:176, type:"alkene", qtype:"formula", diff:"easy", year:"2024",
+   question:"Name:",
+   formula:"CH₂=CH₂",
+   options:["Ethene","Ethane","Propene","Ethyne"],
+   answer:0, hint:"2C, double bond.",
+   explanation:"2 carbons, C=C → Ethene"},
+
+  {id:177, type:"alkyne", qtype:"formula", diff:"easy", year:"2024",
+   question:"Give IUPAC name:",
+   formula:"CH≡CH",
+   options:["Ethyne","Ethene","Propyne","Acetylene"],
+   answer:0, hint:"2C, triple bond.",
+   explanation:"2 carbons, C≡C → Ethyne"},
+
+  {id:178, type:"mixed", qtype:"formula", diff:"medium", year:"2022",
+   question:"Name:",
+   formula:"CH₃-O-CH₃",
+   options:["Methoxymethane","Dimethyl ether","Ethoxyethane","Methyl ether"],
+   answer:0, hint:"Ether: each CH₃ group is methyl; oxygen bridge.",
+   explanation:"Two methyl groups with O bridge → Methoxymethane (dimethyl ether is common name)"},
+
+  {id:179, type:"mixed", qtype:"formula", diff:"medium", year:"2021",
+   question:"Give IUPAC name:",
+   formula:"CH₃-O-CH₂-CH₃",
+   options:["Methoxyethane","Ethoxyethane","Methoxypropane","Ethoxymethane"],
+   answer:0, hint:"Ether: CH₃O = methoxy; C₂H₅ = ethane.",
+   explanation:"Methoxy + ethane → Methoxyethane"},
+
+  {id:180, type:"alkane", qtype:"formula", diff:"hard", year:"2022",
+   question:"Name the compound with the formula (CH₃)₄C:",
+   formula:"(CH₃)₄C",
+   options:["2,2-Dimethylpropane","Neopentane (trivial)","2-Methylbutane","Tetramethylmethane"],
+   answer:0, hint:"5C total; 4 methyls on central C2.",
+   explanation:"5C; central carbon has 4 methyls → 2,2-Dimethylpropane"},
+
+  {id:181, type:"alkene", qtype:"formula", diff:"hard", year:"2020",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH=CH-CH₂-CH₃",
+   options:["Pent-2-ene","Pent-3-ene","Pent-1-ene","Pentene"],
+   answer:0, hint:"5C; double bond at C2.",
+   explanation:"5C, C=C at C2 → Pent-2-ene"},
+
+  {id:182, type:"alkyne", qtype:"formula", diff:"hard", year:"2020",
+   question:"Name:",
+   formula:"CH₃-CH₂-C≡C-CH₂-CH₃",
+   options:["Hex-3-yne","Hex-2-yne","Hex-4-yne","3-Hexyne"],
+   answer:0, hint:"6C; triple bond at C3.",
+   explanation:"6C, C≡C at C3 → Hex-3-yne"},
+
+  {id:183, type:"alcohol", qtype:"formula", diff:"medium", year:"2020",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-OH",
+   options:["Pentan-1-ol","Pentan-2-ol","Butan-1-ol","Hexan-1-ol"],
+   answer:0, hint:"5C; -OH at C1.",
+   explanation:"5C, -OH at C1 → Pentan-1-ol"},
+
+  {id:184, type:"ketone", qtype:"formula", diff:"medium", year:"2019",
+   question:"Name:",
+   formula:"CH₃-CO-CH₂-CH₂-CH₂-CH₃",
+   options:["Hexan-2-one","Hexan-5-one","Pentan-2-one","Heptan-2-one"],
+   answer:0, hint:"6C; C=O at C2.",
+   explanation:"6C, C=O at C2 → Hexan-2-one"},
+
+  {id:185, type:"aldehyde", qtype:"formula", diff:"medium", year:"2018",
+   question:"Give IUPAC name:",
+   formula:"CH₃-(CH₂)₄-CHO",
+   options:["Hexanal","Pentanal","Heptanal","Octanal"],
+   answer:0, hint:"6C aldehyde.",
+   explanation:"6C, -CHO → Hexanal"},
+
+  {id:186, type:"acid", qtype:"formula", diff:"medium", year:"2018",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-CH₂-COOH",
+   options:["Heptanoic acid","Hexanoic acid","Octanoic acid","Enanthic acid"],
+   answer:0, hint:"7C acid.",
+   explanation:"7C, -COOH → Heptanoic acid"},
+
+  {id:187, type:"haloalkane", qtype:"formula", diff:"medium", year:"2017",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-Br",
+   options:["1-Bromobutane","2-Bromobutane","Butyl bromide","4-Bromobutane"],
+   answer:0, hint:"4C; Br at C1.",
+   explanation:"4C, Br at C1 → 1-Bromobutane"},
+
+  {id:188, type:"ester", qtype:"formula", diff:"hard", year:"2018",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-COO-CH₂-CH₃",
+   options:["Ethyl butanoate","Ethyl propanoate","Propyl propanoate","Butyl ethanoate"],
+   answer:0, hint:"Acid: C₃H₇CO = butanoate; alcohol: C₂H₅ = ethyl.",
+   explanation:"Butanoate + ethyl → Ethyl butanoate"},
+
+  {id:189, type:"mixed", qtype:"formula", diff:"hard", year:"2024",
+   question:"Give IUPAC name:",
+   formula:"CH₂=CH-CHO",
+   options:["Prop-2-enal","Propenal","Acrolein","Prop-1-en-3-al"],
+   answer:0, hint:"3C; CHO at C1 (principal); C=C at C2.",
+   explanation:"3C; CHO at C1; C=C at C2 → Prop-2-enal (common: acrolein)"},
+
+  {id:190, type:"mixed", qtype:"formula", diff:"hard", year:"2021",
+   question:"Name:",
+   formula:"CH₂=CH-COOH",
+   options:["Prop-2-enoic acid","Prop-1-enoic acid","Acrylic acid","Propenoic acid"],
+   answer:0, hint:"3C; COOH at C1; C=C at C2.",
+   explanation:"3C; COOH at C1; C=C at C2-C3 → Prop-2-enoic acid"},
+
+  {id:191, type:"alkane", qtype:"formula", diff:"medium", year:"2004",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-CH₂-CH₂-CH₃",
+   options:["Octane","Heptane","Nonane","Decane"],
+   answer:0, hint:"8 carbons.",
+   explanation:"8 carbons → Octane"},
+
+  {id:192, type:"alkene", qtype:"formula", diff:"medium", year:"2004",
+   question:"Name:",
+   formula:"CH₃-CH=CH-CH₂-CH₃",
+   options:["Pent-2-ene","Pent-3-ene","Pent-1-ene","Pentene"],
+   answer:0, hint:"5C; C=C at C2.",
+   explanation:"5C, C=C at C2 → Pent-2-ene"},
+
+  {id:193, type:"alkyne", qtype:"formula", diff:"medium", year:"2004",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C≡C-CH₂-CH₂-CH₃",
+   options:["Hex-2-yne","Hex-4-yne","Hex-3-yne","2-Hexyne"],
+   answer:0, hint:"6C; triple bond at C2.",
+   explanation:"6C, C≡C at C2 → Hex-2-yne"},
+
+  {id:194, type:"alcohol", qtype:"formula", diff:"hard", year:"2004",
+   question:"Name:",
+   formula:"CH₃-CH₂-C(OH)(CH₃)-CH₃",
+   options:["2-Methylbutan-2-ol","2-Methylbutan-3-ol","3-Methylbutan-2-ol","Dimethylpropanol"],
+   answer:0, hint:"4C parent; -OH at C2; methyl at C2.",
+   explanation:"4C; -OH at C2; methyl at C2 → 2-Methylbutan-2-ol"},
+
+  {id:195, type:"acid", qtype:"formula", diff:"hard", year:"2004",
+   question:"Give IUPAC name:",
+   formula:"HOOC-CH₂-CH₂-CH₂-CH₂-COOH",
+   options:["Hexanedioic acid","Pentanedioic acid","Adipic acid","Heptanedioic acid"],
+   answer:0, hint:"6C with COOH at both ends.",
+   explanation:"6C, COOH at both ends → Hexanedioic acid (common: adipic acid)"},
+
+  {id:196, type:"mixed", qtype:"formula", diff:"hard", year:"2022",
+   question:"Name:",
+   formula:"CH₃-CH(OH)-CH₂-CH₂-CH₃",
+   options:["Pentan-2-ol","Pentan-3-ol","Pentan-4-ol","Butan-2-ol"],
+   answer:0, hint:"5C; -OH at C2.",
+   explanation:"5C, -OH at C2 → Pentan-2-ol"},
+
+  {id:197, type:"haloalkane", qtype:"formula", diff:"hard", year:"2022",
+   question:"Give IUPAC name:",
+   formula:"CHCl=CHCl",
+   options:["1,2-Dichloroethene","1,1-Dichloroethene","1,2-Dichloroethane","Vinyl dichloride"],
+   answer:0, hint:"2C; double bond; Cl on each carbon.",
+   explanation:"2C, C=C, Cl at C1 and C2 → 1,2-Dichloroethene"},
+
+  {id:198, type:"alkene", qtype:"formula", diff:"easy", year:"2005",
+   question:"Name:",
+   formula:"CH₂=CH-CH₂-CH₃",
+   options:["But-1-ene","But-2-ene","Butene","Pent-1-ene"],
+   answer:0, hint:"4C; C=C at C1.",
+   explanation:"4C, C=C at C1 → But-1-ene"},
+
+  {id:199, type:"alkane", qtype:"formula", diff:"easy", year:"2010",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-CH₃",
+   options:["Hexane","Pentane","Heptane","Butane"],
+   answer:0, hint:"6 carbons.",
+   explanation:"6 carbons → Hexane"},
+
+  {id:200, type:"mixed", qtype:"formula", diff:"hard", year:"2016",
+   question:"Name:",
+   formula:"CH₃-CH₂-O-CH₂-CH₃",
+   options:["Ethoxyethane","Diethyl ether","Methoxypropane","Propoxyethane"],
+   answer:0, hint:"Ether: C₂H₅-O-C₂H₅; longest carbon = ethane; prefix = ethoxy.",
+   explanation:"Two ethyl groups with O → Ethoxyethane (common: diethyl ether)"},
+
+  {id:201, type:"alkane", qtype:"formula", diff:"medium", year:"2013",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH(CH₃)-CH₂-CH₂-CH₃",
+   options:["3-Methylhexane","4-Methylhexane","3-Methylpentane","2-Methylhexane"],
+   answer:0, hint:"6C parent; methyl at C3.",
+   explanation:"6C parent; methyl at C3 → 3-Methylhexane"},
+
+  {id:202, type:"alkene", qtype:"formula", diff:"hard", year:"2013",
+   question:"Name:",
+   formula:"CH₂=C(CH₃)-CH₂-CH₂-CH₃",
+   options:["2-Methylpent-1-ene","2-Methylpent-2-ene","3-Methylpent-1-ene","Hexene"],
+   answer:0, hint:"5C parent; C=C at C1; methyl at C2.",
+   explanation:"5C parent; C=C at C1; methyl at C2 → 2-Methylpent-1-ene"},
+
+  {id:203, type:"acid", qtype:"formula", diff:"hard", year:"2017",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C(CH₃)(CH₃)-COOH",
+   options:["2,2-Dimethylpropanoic acid","2-Dimethylpropanoic acid","Trimethylacetic acid","Pivalic acid"],
+   answer:0, hint:"3C parent; two methyls at C2.",
+   explanation:"3C parent (propanoic acid); two methyls at C2 → 2,2-Dimethylpropanoic acid"},
+
+  {id:204, type:"haloalkane", qtype:"formula", diff:"hard", year:"2014",
+   question:"Name:",
+   formula:"CH₃-CH(Br)-CH₂-CH₃",
+   options:["2-Bromobutane","3-Bromobutane","1-Bromobutane","2-Bromopropane"],
+   answer:0, hint:"4C; Br at C2.",
+   explanation:"4C, Br at C2 → 2-Bromobutane"},
+
+  {id:205, type:"mixed", qtype:"formula", diff:"hard", year:"2021",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CO-CH₂-CH₂-CH₂-COOH",
+   options:["5-Oxohexanoic acid","6-Oxoheptanoic acid","Levulinic acid","2-Oxohexanoic acid"],
+   answer:0, hint:"6C; COOH at C1; C=O at C5.",
+   explanation:"6C; COOH at C1; C=O at C5 → 5-Oxohexanoic acid"},
+
+  {id:206, type:"alcohol", qtype:"formula", diff:"medium", year:"2003",
+   question:"Name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-OH",
+   options:["Butan-1-ol","Butan-2-ol","Butanol","Propan-1-ol"],
+   answer:0, hint:"4C; -OH at C1.",
+   explanation:"4C, -OH at C1 → Butan-1-ol"},
+
+  {id:207, type:"alkyne", qtype:"formula", diff:"easy", year:"2006",
+   question:"Give IUPAC name:",
+   formula:"CH₃-C≡CH",
+   options:["Propyne","Propene","Butyne","Ethyne"],
+   answer:0, hint:"3C; triple bond.",
+   explanation:"3 carbons, C≡C → Propyne"},
+
+  {id:208, type:"ketone", qtype:"formula", diff:"medium", year:"2016",
+   question:"Name:",
+   formula:"CH₃-CO-C₃H₇",
+   options:["Pentan-2-one","Hexan-2-one","Butan-2-one","Pentan-3-one"],
+   answer:0, hint:"5C total; C=O at C2.",
+   explanation:"5C, C=O at C2 → Pentan-2-one"},
+
+  {id:209, type:"aldehyde", qtype:"formula", diff:"medium", year:"2015",
+   question:"Give IUPAC name:",
+   formula:"CH₃-CH₂-CH₂-CH₂-CH₂-CHO",
+   options:["Hexanal","Pentanal","Heptanal","Butanal"],
+   answer:0, hint:"6C aldehyde.",
+   explanation:"6C, -CHO → Hexanal"},
+
+  {id:210, type:"mixed", qtype:"formula", diff:"hard", year:"2024",
+   question:"Name the compound:",
+   formula:"CH₂(OH)-CH(OH)-CH(OH)-CHO",
+   options:["2,3,4-Trihydroxybutanal","2,3,4-Trihydroxybutanol","Threose","Erythrose"],
+   answer:0, hint:"4C; CHO at C1 (principal); OH at C2, C3, C4.",
+   explanation:"4C; CHO at C1; OH at C2, C3, and C4 → 2,3,4-Trihydroxybutanal (a tetrose sugar aldehyde)"},
+];
+
+// ============================================================
+// APP STATE
+// ============================================================
+let practiceAnswers = {}; // {qId: {selected, correct}}
+let filteredQs = [...QUESTIONS];
+let quizState = {
+  questions: [],
+  current: 0,
+  correct: 0,
+  wrong: 0,
+  streak: 0,
+  bestStreak: 0,
+  answered: false,
+  timerInterval: null,
+  timeLeft: 0,
+  timeSetting: 60
+};
+
+// ============================================================
+// TAB SWITCHING
+// ============================================================
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['practice','quiz','reference'][i] === tab);
+  });
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+// ============================================================
+// PRACTICE PANEL
+// ============================================================
+function applyFilters() {
+  const type = document.getElementById('filter-type').value;
+  const diff = document.getElementById('filter-diff').value;
+  const qtype = document.getElementById('filter-qtype').value;
+  const search = document.getElementById('search-input').value.toLowerCase();
+
+  filteredQs = QUESTIONS.filter(q => {
+    if (type !== 'all' && q.type !== type) return false;
+    if (diff !== 'all' && q.diff !== diff) return false;
+    if (qtype !== 'all' && q.qtype !== qtype) return false;
+    if (search) {
+      const haystack = (q.question + q.formula + q.options.join(' ')).toLowerCase();
+      if (!haystack.includes(search)) return false;
+    }
+    return true;
+  });
+
+  renderPractice();
+}
+
+function resetFilters() {
+  document.getElementById('filter-type').value = 'all';
+  document.getElementById('filter-diff').value = 'all';
+  document.getElementById('filter-qtype').value = 'all';
+  document.getElementById('search-input').value = '';
+  applyFilters();
+}
+
+function renderPractice() {
+  const container = document.getElementById('practice-list');
+  if (!filteredQs.length) {
+    container.innerHTML = `<div class="empty-state"><div class="emoji">🔬</div><p>No questions match your filters.</p></div>`;
+    return;
+  }
+
+  container.innerHTML = filteredQs.map(q => buildQCard(q, 'practice')).join('');
+}
+
+function buildQCard(q, mode) {
+  const state = practiceAnswers[q.id];
+  const cardClass = state ? (state.correct ? 'answered-correct' : 'answered-wrong') : '';
+  const diffDot = `<span class="difficulty-dot diff-${q.diff}"></span>`;
+  const typeClass = `tag-${q.type}`;
+  const qtypeLabel = {name:'Name→Structure', structure:'Structure→Name', formula:'Formula→Name'}[q.qtype] || q.qtype;
+
+  const optionsHTML = q.options.map((opt, i) => {
+    let cls = 'opt-btn';
+    if (state) {
+      if (i === q.answer) cls += ' correct';
+      else if (i === state.selected) cls += ' wrong';
+    }
+    return `<button class="${cls}" 
+      onclick="selectAnswer(${q.id}, ${i})" 
+      ${state ? 'disabled' : ''}
+      data-qid="${q.id}" data-idx="${i}">
+      <span style="color:var(--muted);margin-right:6px;font-family:'Space Mono',monospace;font-size:0.75rem">${String.fromCharCode(65+i)})</span>${opt}
+    </button>`;
+  }).join('');
+
+  const feedbackClass = state ? (state.correct ? 'feedback correct show' : 'feedback wrong show') : 'feedback';
+  const feedbackMsg = state ? (state.correct ? `✓ Correct! ${q.explanation}` : `✗ Correct answer: ${q.options[q.answer]}. ${q.explanation}`) : '';
+
+  return `
+  <div class="q-card ${cardClass}" id="qcard-${q.id}">
+    <div class="q-meta">
+      <span class="q-number">#${q.id}</span>
+      <span class="tag ${typeClass}">${q.type.charAt(0).toUpperCase()+q.type.slice(1)}</span>
+      <span class="q-type-badge">${qtypeLabel}</span>
+      ${diffDot}<span style="font-size:0.7rem;color:var(--muted)">${q.diff}</span>
+      <span class="year-tag">ICSE ${q.year}</span>
+    </div>
+    <div class="q-text">${q.question}</div>
+    ${q.formula ? `<div class="q-formula">${q.formula}</div>` : ''}
+    <div class="options-grid">${optionsHTML}</div>
+    ${!state ? `<button class="hint-btn" onclick="toggleHint(${q.id})">💡 Hint</button>
+    <div class="hint-text" id="hint-${q.id}">${q.hint}</div>` : ''}
+    <div class="${feedbackClass}" id="fb-${q.id}">${feedbackMsg}</div>
+  </div>`;
+}
+
+function toggleHint(qid) {
+  const el = document.getElementById('hint-' + qid);
+  el.classList.toggle('show');
+}
+
+function selectAnswer(qid, idx) {
+  const q = QUESTIONS.find(x => x.id === qid);
+  if (!q || practiceAnswers[qid]) return;
+
+  const correct = idx === q.answer;
+  practiceAnswers[qid] = { selected: idx, correct };
+
+  // Update stats
+  const attempted = Object.keys(practiceAnswers).length;
+  const correctCount = Object.values(practiceAnswers).filter(x => x.correct).length;
+  const wrongCount = attempted - correctCount;
+  document.getElementById('stat-total').textContent = attempted;
+  document.getElementById('stat-correct').textContent = correctCount;
+  document.getElementById('stat-wrong').textContent = wrongCount;
+  document.getElementById('stat-pct').textContent = attempted ? Math.round(correctCount/attempted*100)+'%' : '—';
+
+  // Update card visuals
+  const card = document.getElementById('qcard-' + qid);
+  card.classList.add(correct ? 'answered-correct' : 'answered-wrong');
+
+  // Update buttons
+  card.querySelectorAll('.opt-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) btn.classList.add('correct');
+    else if (i === idx) btn.classList.add('wrong');
+  });
+
+  // Show feedback
+  const fb = document.getElementById('fb-' + qid);
+  fb.textContent = correct ? `✓ Correct! ${q.explanation}` : `✗ Correct answer: ${q.options[q.answer]}. ${q.explanation}`;
+  fb.className = `feedback ${correct ? 'correct' : 'wrong'} show`;
+
+  // Hide hint
+  const hint = document.getElementById('hint-' + qid);
+  if (hint) hint.style.display = 'none';
+  const hintBtn = card.querySelector('.hint-btn');
+  if (hintBtn) hintBtn.style.display = 'none';
+}
+
+// ============================================================
+// QUIZ MODE
+// ============================================================
+function startQuiz() {
+  const count = parseInt(document.getElementById('quiz-count').value);
+  const topic = document.getElementById('quiz-topic').value;
+  const diff = document.getElementById('quiz-diff').value;
+  const timeSetting = parseInt(document.getElementById('quiz-time').value);
+
+  let pool = QUESTIONS.filter(q => {
+    if (topic !== 'all' && q.type !== topic) return false;
+    if (diff !== 'all' && q.diff !== diff) return false;
+    return true;
+  });
+
+  // Shuffle
+  pool = pool.sort(() => Math.random() - 0.5).slice(0, count);
+
+  quizState = {
+    questions: pool,
+    current: 0,
+    correct: 0,
+    wrong: 0,
+    streak: 0,
+    bestStreak: 0,
+    answered: false,
+    timerInterval: null,
+    timeLeft: timeSetting,
+    timeSetting
+  };
+
+  document.getElementById('quiz-setup-screen').classList.add('hidden');
+  document.getElementById('quiz-results-screen').classList.add('hidden');
+  document.getElementById('quiz-active-screen').classList.remove('hidden');
+  document.getElementById('quiz-next-btn').disabled = true;
+
+  showQuizQuestion();
+}
+
+function showSetup() {
+  clearInterval(quizState.timerInterval);
+  document.getElementById('quiz-setup-screen').classList.remove('hidden');
+  document.getElementById('quiz-active-screen').classList.add('hidden');
+  document.getElementById('quiz-results-screen').classList.add('hidden');
+}
+
+function showQuizQuestion() {
+  const { questions, current, timeSetting } = quizState;
+  if (current >= questions.length) { endQuiz(); return; }
+
+  quizState.answered = false;
+  document.getElementById('quiz-next-btn').disabled = true;
+
+  const q = questions[current];
+  const pct = (current / questions.length) * 100;
+  document.getElementById('quiz-progress-bar').style.width = pct + '%';
+  document.getElementById('quiz-progress-text').textContent = `${current + 1} / ${questions.length}`;
+  document.getElementById('quiz-streak').textContent = quizState.streak > 1 ? `🔥 ${quizState.streak}` : '';
+
+  const optionsHTML = q.options.map((opt, i) => `
+    <button class="opt-btn" onclick="quizSelectAnswer(${i})" data-idx="${i}">
+      <span style="color:var(--muted);margin-right:6px;font-family:'Space Mono',monospace;font-size:0.75rem">${String.fromCharCode(65+i)})</span>${opt}
+    </button>`).join('');
+
+  document.getElementById('quiz-question-container').innerHTML = `
+    <div class="q-card" id="quiz-active-card">
+      <div class="q-meta">
+        <span class="tag tag-${q.type}">${q.type.charAt(0).toUpperCase()+q.type.slice(1)}</span>
+        <span class="q-type-badge">${{name:'Name→Structure',structure:'Structure→Name',formula:'Formula→Name'}[q.qtype]||q.qtype}</span>
+        <span class="year-tag">ICSE ${q.year}</span>
+      </div>
+      <div class="q-text">${q.question}</div>
+      ${q.formula ? `<div class="q-formula">${q.formula}</div>` : ''}
+      <div class="options-grid">${optionsHTML}</div>
+      <div class="feedback" id="quiz-fb"></div>
+    </div>`;
+
+  // Timer
+  clearInterval(quizState.timerInterval);
+  if (timeSetting > 0) {
+    quizState.timeLeft = timeSetting;
+    updateTimerDisplay();
+    quizState.timerInterval = setInterval(() => {
+      quizState.timeLeft--;
+      updateTimerDisplay();
+      if (quizState.timeLeft <= 0) {
+        clearInterval(quizState.timerInterval);
+        if (!quizState.answered) autoTimeOut();
+      }
+    }, 1000);
+  } else {
+    document.getElementById('quiz-timer').textContent = '';
+  }
+}
+
+function updateTimerDisplay() {
+  const t = quizState.timeLeft;
+  const el = document.getElementById('quiz-timer');
+  if (el) el.textContent = `⏱ ${t}s`;
+  if (el && t <= 10) el.style.color = 'var(--danger)';
+  else if (el) el.style.color = 'var(--warn)';
+}
+
+function autoTimeOut() {
+  quizState.answered = true;
+  const q = quizState.questions[quizState.current];
+  quizState.wrong++;
+  quizState.streak = 0;
+  document.querySelectorAll('#quiz-active-card .opt-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) btn.classList.add('correct');
+  });
+  const fb = document.getElementById('quiz-fb');
+  fb.textContent = `⏰ Time's up! Correct answer: ${q.options[q.answer]}`;
+  fb.className = 'feedback wrong show';
+  document.getElementById('quiz-next-btn').disabled = false;
+}
+
+function quizSelectAnswer(idx) {
+  if (quizState.answered) return;
+  clearInterval(quizState.timerInterval);
+  quizState.answered = true;
+
+  const q = quizState.questions[quizState.current];
+  const correct = idx === q.answer;
+
+  if (correct) {
+    quizState.correct++;
+    quizState.streak++;
+    if (quizState.streak > quizState.bestStreak) quizState.bestStreak = quizState.streak;
+  } else {
+    quizState.wrong++;
+    quizState.streak = 0;
+  }
+
+  document.querySelectorAll('#quiz-active-card .opt-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) btn.classList.add('correct');
+    else if (i === idx) btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('quiz-fb');
+  fb.textContent = correct ? `✓ Correct! ${q.explanation}` : `✗ ${q.options[q.answer]}. ${q.explanation}`;
+  fb.className = `feedback ${correct ? 'correct' : 'wrong'} show`;
+
+  document.getElementById('quiz-streak').textContent = quizState.streak > 1 ? `🔥 ${quizState.streak}` : '';
+  document.getElementById('quiz-next-btn').disabled = false;
+}
+
+function nextQuizQuestion() {
+  quizState.current++;
+  if (quizState.current >= quizState.questions.length) {
+    endQuiz();
+  } else {
+    showQuizQuestion();
+  }
+}
+
+function endQuiz() {
+  clearInterval(quizState.timerInterval);
+  const total = quizState.questions.length;
+  const pct = Math.round(quizState.correct / total * 100);
+  const grade = pct >= 90 ? '🏆 Outstanding!' : pct >= 75 ? '⭐ Great work!' : pct >= 60 ? '👍 Good effort!' : pct >= 40 ? '📖 Keep practising!' : '💪 Study more & retry!';
+
+  document.getElementById('results-pct').textContent = pct + '%';
+  document.getElementById('results-grade').textContent = grade;
+  document.getElementById('res-correct').textContent = quizState.correct;
+  document.getElementById('res-wrong').textContent = quizState.wrong;
+  document.getElementById('res-streak').textContent = quizState.bestStreak;
+
+  document.getElementById('quiz-active-screen').classList.add('hidden');
+  document.getElementById('quiz-results-screen').classList.remove('hidden');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.onload = function() {
+  renderPractice();
+};
+</script>
+</body>
+</html>
