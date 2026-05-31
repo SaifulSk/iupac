@@ -603,7 +603,180 @@
     .results-breakdown { grid-template-columns: 1fr; }
   }
 
-  .hidden { display: none !important; }
+  /* ===================== BUILDER ===================== */
+  .builder-intro { text-align:center; margin-bottom:24px; }
+  .builder-title {
+    font-size:1.3rem; font-weight:800;
+    background: linear-gradient(135deg,#10b981,var(--accent));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text; margin-bottom:6px;
+  }
+  .builder-sub { color:var(--muted); font-size:0.82rem; }
+
+  .builder-controls {
+    display:flex; gap:16px; flex-wrap:wrap;
+    margin-bottom:16px; align-items:flex-start;
+  }
+  .builder-ctrl-group { display:flex; flex-direction:column; gap:6px; flex:1; min-width:180px; }
+  .ctrl-label { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; font-weight:700; }
+
+  .bond-selector { display:flex; gap:6px; flex-wrap:wrap; }
+  .bond-btn {
+    font-family:'Space Mono',monospace; font-size:0.78rem; font-weight:700;
+    padding:7px 12px; border-radius:8px; border:1px solid var(--border);
+    background:var(--surface); color:var(--muted); cursor:pointer; transition:all 0.2s;
+    letter-spacing:0.5px;
+  }
+  .bond-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .bond-btn.active-bond { border-color:var(--accent); background:rgba(0,212,255,0.12); color:var(--accent); }
+
+  .builder-select {
+    background:var(--card); border:1px solid var(--border); color:var(--text);
+    font-family:'Syne',sans-serif; font-size:0.8rem; padding:8px 12px; border-radius:8px;
+    cursor:pointer; transition:border-color 0.2s; width:100%;
+  }
+  .builder-select:focus { outline:none; border-color:var(--accent); }
+
+  /* Chain visualizer */
+  .chain-viz {
+    background:var(--surface); border:1px solid var(--border); border-radius:14px;
+    min-height:150px; padding:48px 20px 24px; margin-bottom:20px;
+    display:flex; align-items:center; gap:0; overflow-x:auto;
+    flex-wrap:nowrap; position:relative; overflow-y:visible;
+  }
+  .chain-empty { color:var(--muted); font-size:0.85rem; margin:auto; }
+
+  .c-node {
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    flex-shrink:0; position:relative; overflow:visible;
+    padding-top:32px;
+  }
+  .c-circle {
+    width:52px; height:52px; border-radius:50%;
+    background:var(--card); border:2px solid var(--accent);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:1rem; color:var(--accent);
+    font-family:'Space Mono',monospace; position:relative;
+    transition:border-color 0.2s, background 0.2s;
+    overflow:visible;
+  }
+  .c-circle.has-sub { border-color:var(--warn); }
+  .c-circle.has-fg  { border-color:var(--correct); }
+  .c-num {
+    font-family:'Space Mono',monospace; font-size:0.6rem;
+    color:var(--muted); position:absolute; top:-22px; left:50%; transform:translateX(-50%);
+    white-space:nowrap;
+  }
+  .c-fg-label {
+    font-size:0.62rem; font-family:'Space Mono',monospace;
+    padding:2px 6px; border-radius:4px; white-space:nowrap;
+    background:rgba(16,185,129,0.15); color:var(--correct);
+    border:1px solid rgba(16,185,129,0.3);
+  }
+  .c-sub-label {
+    font-size:0.6rem; font-family:'Space Mono',monospace;
+    padding:2px 5px; border-radius:4px; white-space:nowrap;
+    background:rgba(245,158,11,0.15); color:var(--warn);
+    border:1px solid rgba(245,158,11,0.3);
+    position:absolute; top:-44px; left:50%; transform:translateX(-50%);
+  }
+  .c-bond-seg {
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace; font-weight:700; font-size:1.1rem;
+    color:var(--accent2); padding:0 4px; flex-shrink:0;
+    align-self:center; margin-top:32px;
+    letter-spacing:-1px;
+  }
+
+  /* IUPAC result box */
+  .iupac-result {
+    background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(124,58,237,0.08));
+    border:1px solid rgba(0,212,255,0.25); border-radius:14px;
+    padding:20px 24px; text-align:center; margin-bottom:20px;
+  }
+  .iupac-result-label {
+    font-size:0.68rem; color:var(--muted); text-transform:uppercase;
+    letter-spacing:1px; font-weight:700; margin-bottom:8px;
+  }
+  .iupac-result-name {
+    font-size:1.6rem; font-weight:800; letter-spacing:-0.5px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text; min-height:2rem;
+  }
+  .iupac-result-hint { font-size:0.78rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+
+  /* series hint */
+  .builder-series {
+    font-size:0.78rem; color:var(--muted); text-align:center;
+    margin-bottom:20px; min-height:20px;
+  }
+  .builder-series span { color:var(--accent); }
+
+  /* Presets */
+  .preset-section { margin-top:8px; }
+  .preset-label {
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.5px;
+    color:var(--muted); font-weight:700; margin-bottom:10px;
+  }
+  .preset-grid { display:flex; flex-wrap:wrap; gap:8px; }
+  .preset-btn {
+    font-family:'Space Mono',monospace; font-size:0.72rem;
+    padding:6px 12px; border-radius:20px;
+    background:var(--surface); border:1px solid var(--border);
+    color:var(--text); cursor:pointer; transition:all 0.2s;
+  }
+  .preset-btn:hover { border-color:var(--accent2); color:var(--accent2); background:rgba(124,58,237,0.08); }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 700px) {
+    .container { padding: 0 12px; }
+    header { padding: 20px 0 16px; }
+    .logo-area h1 { font-size: 1.3rem; }
+    .logo-area p { font-size: 0.62rem; }
+
+    .tabs { gap: 2px; padding: 3px; }
+    .tab-btn { min-width: 70px; padding: 8px 8px; font-size: 0.72rem; }
+
+    .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px; }
+    .stat-card { padding: 12px; }
+    .stat-card .val { font-size: 1.4rem; }
+
+    .filter-bar { gap: 7px; }
+    .filter-bar label { display:none; }
+    .filter-bar select, .filter-bar .btn-secondary, .filter-bar .btn-primary { font-size: 0.75rem; padding: 7px 10px; }
+
+    .options-grid { grid-template-columns: 1fr; gap: 8px; }
+    .opt-btn { font-size: 0.82rem; padding: 11px 12px; }
+
+    .setup-grid { grid-template-columns: 1fr; gap: 12px; }
+    .results-breakdown { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .results-score { font-size: 3rem; }
+
+    .ref-table { font-size: 0.72rem; }
+    .ref-table th, .ref-table td { padding: 7px 8px; }
+
+    .q-text { font-size: 0.9rem; }
+    .q-formula { font-size: 0.9rem; }
+
+    .iupac-result-name { font-size: 1.2rem; }
+    .chain-viz { min-height: 120px; padding: 44px 14px 20px; }
+    .c-circle { width: 42px; height: 42px; font-size: 0.85rem; overflow:visible; }
+    .c-node { padding-top: 28px; }
+    .builder-controls { gap: 12px; }
+    .preset-grid { gap: 6px; }
+
+    .quiz-setup { padding: 20px 16px; }
+    .results-card { padding: 24px 16px; }
+    .nav-btns { flex-wrap: wrap; }
+  }
+
+  @media (max-width: 420px) {
+    .tab-btn { min-width: 56px; padding: 7px 5px; font-size: 0.65rem; }
+    .logo-area h1 { font-size: 1.1rem; }
+    .stats-row { grid-template-columns: repeat(2,1fr); gap: 6px; }
+    .bond-btn { font-size: 0.7rem; padding: 6px 8px; }
+  }
 
   .q-type-badge {
     font-size: 0.62rem;
@@ -630,7 +803,7 @@
     margin-right: 4px;
   }
   .diff-easy { background: var(--correct); }
-  .diff-med { background: var(--warn); }
+  .diff-med  { background: var(--warn); }
   .diff-hard { background: var(--danger); }
 
   .hint-btn {
@@ -644,7 +817,6 @@
     cursor: pointer;
     transition: background 0.2s;
   }
-
   .hint-btn:hover { background: rgba(124,58,237,0.1); }
 
   .hint-text {
@@ -657,8 +829,9 @@
     margin-top: 8px;
     display: none;
   }
-
   .hint-text.show { display: block; }
+  .hidden { display: none !important; }
+
 </style>
 </head>
 <body>
@@ -680,6 +853,7 @@
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('practice')">📚 Practice</button>
     <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz Mode</button>
+    <button class="tab-btn" onclick="switchTab('builder')">🔬 Molecule Builder</button>
     <button class="tab-btn" onclick="switchTab('reference')">📋 Reference</button>
   </div>
 
@@ -894,6 +1068,104 @@
       </table>
     </div>
   </div>
+
+  <!-- BUILDER PANEL -->
+  <div id="panel-builder" class="panel">
+    <div class="builder-intro">
+      <h2 class="builder-title">🔬 Molecule Builder</h2>
+      <p class="builder-sub">Drag carbon atoms onto the chain, pick bonds and functional groups — the IUPAC name updates instantly.</p>
+    </div>
+
+    <!-- Controls row -->
+    <div class="builder-controls">
+      <div class="builder-ctrl-group">
+        <label class="ctrl-label">Bond Type</label>
+        <div class="bond-selector">
+          <button class="bond-btn active-bond" id="bond-single" onclick="setBond('single')">— Single</button>
+          <button class="bond-btn" id="bond-double" onclick="setBond('double')">=  Double</button>
+          <button class="bond-btn" id="bond-triple" onclick="setBond('triple')">≡ Triple</button>
+        </div>
+      </div>
+      <div class="builder-ctrl-group">
+        <label class="ctrl-label">Functional Group (on last C)</label>
+        <select id="b-funcGroup" class="builder-select" onchange="rebuildName()">
+          <option value="none">None (Alkane/ene/yne)</option>
+          <option value="alcohol">-OH  (Alcohol → -ol)</option>
+          <option value="aldehyde">-CHO  (Aldehyde → -al)</option>
+          <option value="ketone">C=O  (Ketone → -one)</option>
+          <option value="acid">-COOH  (Carboxylic acid → -oic acid)</option>
+          <option value="haloF">-F  (Fluoro)</option>
+          <option value="haloCl">-Cl  (Chloro)</option>
+          <option value="haloBr">-Br  (Bromo)</option>
+          <option value="haloI">-I  (Iodo)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Substituent row -->
+    <div class="builder-controls" style="margin-top:0">
+      <div class="builder-ctrl-group">
+        <label class="ctrl-label">Substituent on Carbon #</label>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <select id="b-subPos" class="builder-select" style="width:80px">
+            <option value="">—</option>
+          </select>
+          <select id="b-subType" class="builder-select">
+            <option value="none">None</option>
+            <option value="methyl">-CH₃ (Methyl)</option>
+            <option value="ethyl">-C₂H₅ (Ethyl)</option>
+            <option value="chloro">-Cl (Chloro)</option>
+            <option value="bromo">-Br (Bromo)</option>
+            <option value="hydroxy">-OH (Hydroxy)</option>
+          </select>
+          <button class="btn-secondary" onclick="addSubstituent()" style="padding:7px 14px;font-size:0.8rem">Add</button>
+          <button class="btn-secondary" onclick="removeSubstituent()" style="padding:7px 14px;font-size:0.8rem;border-color:var(--danger);color:var(--danger)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chain visualizer -->
+    <div class="chain-viz" id="chain-viz">
+      <span class="chain-empty">Add carbons to begin building →</span>
+    </div>
+
+    <!-- Add / Reset buttons -->
+    <div style="display:flex;gap:12px;justify-content:center;margin-bottom:24px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="builderAddCarbon()" style="font-size:0.9rem;padding:12px 28px">＋ Add Carbon</button>
+      <button class="btn-secondary" onclick="builderRemoveCarbon()" style="padding:12px 22px">← Remove Last</button>
+      <button class="btn-secondary" onclick="builderClear()" style="padding:12px 22px;border-color:var(--danger);color:var(--danger)">🗑 Reset</button>
+    </div>
+
+    <!-- IUPAC output -->
+    <div class="iupac-result" id="iupac-result">
+      <div class="iupac-result-label">IUPAC Name</div>
+      <div class="iupac-result-name" id="iupac-name-display">—</div>
+      <div class="iupac-result-hint" id="iupac-name-hint"></div>
+    </div>
+
+    <!-- Homologous series hint -->
+    <div class="builder-series" id="builder-series"></div>
+
+    <!-- Quick preset molecules -->
+    <div class="preset-section">
+      <div class="preset-label">Quick Presets</div>
+      <div class="preset-grid">
+        <button class="preset-btn" onclick="loadPreset('ethane')">Ethane</button>
+        <button class="preset-btn" onclick="loadPreset('propene')">Propene</button>
+        <button class="preset-btn" onclick="loadPreset('ethyne')">Ethyne</button>
+        <button class="preset-btn" onclick="loadPreset('ethanol')">Ethanol</button>
+        <button class="preset-btn" onclick="loadPreset('propan2ol')">Propan-2-ol</button>
+        <button class="preset-btn" onclick="loadPreset('ethanal')">Ethanal</button>
+        <button class="preset-btn" onclick="loadPreset('propanone')">Propanone</button>
+        <button class="preset-btn" onclick="loadPreset('ethanoicacid')">Ethanoic Acid</button>
+        <button class="preset-btn" onclick="loadPreset('chloroethane')">Chloroethane</button>
+        <button class="preset-btn" onclick="loadPreset('2methylpropane')">2-Methylpropane</button>
+        <button class="preset-btn" onclick="loadPreset('but2ene')">But-2-ene</button>
+        <button class="preset-btn" onclick="loadPreset('but2yne')">But-2-yne</button>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -2527,7 +2799,7 @@ let quizState = {
 // ============================================================
 function switchTab(tab) {
   document.querySelectorAll('.tab-btn').forEach((b, i) => {
-    b.classList.toggle('active', ['practice','quiz','reference'][i] === tab);
+    b.classList.toggle('active', ['practice','quiz','builder','reference'][i] === tab);
   });
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + tab).classList.add('active');
@@ -2553,12 +2825,23 @@ function applyFilters() {
     return true;
   });
 
-  // Clear answers/shuffle for old set, pick fresh 10
-  activeQs.forEach(q => {
-    delete practiceAnswers[q.id];
-    delete shuffledOptionsMap[q.id];
-  });
-  pickActiveQs();
+  // When filter changes, keep existing activeQs that still match; add from pool if needed
+  // (Don't wipe answers — only remove Qs that no longer match the filter)
+  const prevActive = activeQs.filter(q => filteredQs.includes(q));
+  if (prevActive.length < activeQs.length) {
+    // Some active Qs were filtered out — remove their state
+    activeQs.filter(q => !filteredQs.includes(q)).forEach(q => {
+      delete practiceAnswers[q.id];
+      delete shuffledOptionsMap[q.id];
+    });
+  }
+  // Refill to 10 from filteredQs (avoid duplicates of prevActive)
+  const prevIds = new Set(prevActive.map(q => q.id));
+  const extra = filteredQs.filter(q => !prevIds.has(q.id))
+    .sort(() => Math.random() - 0.5)
+    .slice(0, Math.max(0, 10 - prevActive.length));
+  extra.forEach(q => { shuffledOptionsMap[q.id] = shuffleOptions(q); });
+  activeQs = [...prevActive, ...extra];
   renderPractice();
   updatePracticeStats();
 }
@@ -2568,7 +2851,10 @@ function resetFilters() {
   document.getElementById('filter-diff').value = 'all';
   document.getElementById('filter-qtype').value = 'all';
   document.getElementById('search-input').value = '';
-  applyFilters();
+  // Rebuild filteredQs with no filters, but DON'T pick new questions
+  filteredQs = [...QUESTIONS];
+  renderPractice();
+  updatePracticeStats();
 }
 
 function newQuestions() {
@@ -2862,6 +3148,400 @@ function endQuiz() {
 
   document.getElementById('quiz-active-screen').classList.add('hidden');
   document.getElementById('quiz-results-screen').classList.remove('hidden');
+}
+
+// ============================================================
+// MOLECULE BUILDER
+// ============================================================
+const B_PREFIXES = {1:'Meth',2:'Eth',3:'Prop',4:'But',5:'Pent',6:'Hex',7:'Hept',8:'Oct',9:'Non',10:'Dec'};
+const FG_LABELS  = {none:'',alcohol:'-OH',aldehyde:'-CHO',ketone:'=O',acid:'-COOH',haloF:'-F',haloCl:'-Cl',haloBr:'-Br',haloI:'-I'};
+const SUB_LABELS = {none:'',methyl:'-CH₃',ethyl:'-C₂H₅',chloro:'-Cl',bromo:'-Br',hydroxy:'-OH'};
+
+// chain: [{bond:'single'|'double'|'triple', fg:'none'|..., sub:'none'|...}]
+let bChain = [];
+let bBond  = 'single';
+// substituents: {carbonIndex: subType}
+let bSubs  = {};
+
+function setBond(type) {
+  bBond = type;
+  document.querySelectorAll('.bond-btn').forEach(b => b.classList.remove('active-bond'));
+  document.getElementById('bond-' + type).classList.add('active-bond');
+  clearBuilderError();
+}
+
+function builderAddCarbon() {
+  if (bChain.length >= 10) { showBuilderError('Maximum 10 carbons for Class 10 scope!'); return; }
+  const fg = document.getElementById('b-funcGroup').value;
+  const bond = bChain.length === 0 ? 'single' : bBond;
+
+  // ── Bond validity checks ──────────────────────────────
+  if (bond !== 'single') {
+    const existingBonds = bChain.slice(1).map(c => c.bond);
+    const hasTriple = existingBonds.includes('triple');
+    const dblCount  = existingBonds.filter(b => b === 'double').length;
+
+    if (hasTriple) {
+      showBuilderError('❌ Cannot add another bond after a triple bond. Triple bonds are terminal in ICSE scope.');
+      return;
+    }
+    if (bond === 'triple' && dblCount > 0) {
+      showBuilderError('❌ Cannot mix a triple bond with existing double bonds in the same chain (Class 10 scope).');
+      return;
+    }
+    if (bond === 'triple' && fg !== 'none') {
+      showBuilderError('❌ Alkynes (triple bond) cannot carry functional groups like -OH or -COOH in Class 10.');
+      return;
+    }
+    if (bond === 'double' && dblCount >= 1) {
+      // Allow 1,3-diene only: last bond before this must have been single
+      const lastBond = existingBonds[existingBonds.length - 1];
+      if (lastBond !== 'single') {
+        showBuilderError('❌ Only conjugated dienes (alternating) are valid in Class 10 scope. The bond before must be single.');
+        return;
+      }
+      if (dblCount >= 2) {
+        showBuilderError('❌ Maximum 2 double bonds (diene) allowed in Class 10 scope.');
+        return;
+      }
+    }
+    if ((fg === 'aldehyde' || fg === 'acid' || fg === 'ketone') && bond !== 'single') {
+      showBuilderError('❌ -CHO, -COOH and ketone compounds use saturated chains in ICSE Class 10.');
+      return;
+    }
+  }
+
+  // All carbons default to none; FG lives on last carbon
+  bChain.push({ bond, fg: 'none' });
+  bChain[bChain.length - 1].fg = fg;
+  if (bChain.length > 1) bChain[bChain.length - 2].fg = 'none';
+  clearBuilderError();
+  updateSubPosSelect();
+  renderBuilder();
+  buildIUPAC();
+}
+
+function showBuilderError(msg) {
+  let el = document.getElementById('builder-error');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'builder-error';
+    el.style.cssText = 'background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.4);color:#fca5a5;font-size:0.8rem;padding:10px 14px;border-radius:8px;margin-bottom:12px;line-height:1.5;';
+    // Insert before chain-viz
+    const viz = document.getElementById('chain-viz');
+    viz.parentNode.insertBefore(el, viz);
+  }
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function clearBuilderError() {
+  const el = document.getElementById('builder-error');
+  if (el) el.style.display = 'none';
+}
+
+function builderRemoveCarbon() {
+  if (!bChain.length) return;
+  const lastIdx = bChain.length - 1;
+  delete bSubs[lastIdx];
+  bChain.pop();
+  clearBuilderError();
+  updateSubPosSelect();
+  renderBuilder();
+  buildIUPAC();
+}
+
+function builderClear() {
+  bChain = []; bSubs = {};
+  clearBuilderError();
+  updateSubPosSelect();
+  renderBuilder();
+  document.getElementById('iupac-name-display').textContent = '—';
+  document.getElementById('iupac-name-hint').textContent = '';
+  document.getElementById('builder-series').innerHTML = '';
+}
+
+function updateSubPosSelect() {
+  const sel = document.getElementById('b-subPos');
+  sel.innerHTML = '<option value="">—</option>';
+  bChain.forEach((_, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `C${i+1}`;
+    sel.appendChild(opt);
+  });
+}
+
+function addSubstituent() {
+  const pos = document.getElementById('b-subPos').value;
+  const type = document.getElementById('b-subType').value;
+  if (pos === '' || type === 'none') return;
+  bSubs[parseInt(pos)] = type;
+  renderBuilder();
+  buildIUPAC();
+}
+
+function removeSubstituent() {
+  const pos = document.getElementById('b-subPos').value;
+  if (pos === '') return;
+  delete bSubs[parseInt(pos)];
+  renderBuilder();
+  buildIUPAC();
+}
+
+function renderBuilder() {
+  const viz = document.getElementById('chain-viz');
+  if (!bChain.length) {
+    viz.innerHTML = '<span class="chain-empty">Add carbons to begin building →</span>';
+    return;
+  }
+  viz.innerHTML = '';
+  const fg = document.getElementById('b-funcGroup').value;
+
+  bChain.forEach((c, i) => {
+    // Bond segment (not before first carbon)
+    if (i > 0) {
+      const seg = document.createElement('div');
+      seg.className = 'c-bond-seg';
+        if (c.bond === 'single') seg.textContent = '—';
+      else if (c.bond === 'double') seg.textContent = '=';
+      else seg.textContent = '≡';
+      viz.appendChild(seg);
+    }
+
+    const node = document.createElement('div');
+    node.className = 'c-node';
+
+    const circle = document.createElement('div');
+    const hasSub = bSubs[i] && bSubs[i] !== 'none';
+    const hasFg  = (i === bChain.length - 1) && fg !== 'none';
+    circle.className = 'c-circle' + (hasSub ? ' has-sub' : '') + (hasFg ? ' has-fg' : '');
+
+    // position number
+    const num = document.createElement('span');
+    num.className = 'c-num';
+    num.textContent = `C${i+1}`;
+    circle.appendChild(num);
+
+    // substituent label above
+    if (hasSub) {
+      const sl = document.createElement('span');
+      sl.className = 'c-sub-label';
+      sl.textContent = SUB_LABELS[bSubs[i]] || bSubs[i];
+      circle.appendChild(sl);
+    }
+
+    const ctxt = document.createElement('span');
+    ctxt.textContent = 'C';
+    circle.appendChild(ctxt);
+    node.appendChild(circle);
+
+    // functional group label below last carbon
+    if (hasFg) {
+      const fgl = document.createElement('div');
+      fgl.className = 'c-fg-label';
+      fgl.textContent = FG_LABELS[fg] || fg;
+      node.appendChild(fgl);
+    }
+
+    viz.appendChild(node);
+  });
+}
+
+function buildIUPAC() {
+  const n = bChain.length;
+  if (!n) return;
+
+  const fg = document.getElementById('b-funcGroup').value;
+  const prefix = B_PREFIXES[n] || `(${n}C)`;
+  // 'an' infix used when suffix starts with a consonant: -ane/-anol/-anal/-anone/-anoic acid
+  // No infix when suffix starts with vowel: -ene/-yne (prefix already ends consonant)
+  // IUPAC rule: drop terminal 'e' before vowel suffix (-ol, -al, -one, -oic)
+  // BUT: propan+ol = propanol, but-2+ene keeps 'e', etc.
+  // The correct approach: use prefix as-is for -ane; for other suffixes see below.
+
+  const bonds = bChain.slice(1).map(c => c.bond);
+  const dblPositions = bonds.reduce((a,b,i) => b==='double' ? [...a,i+1] : a, []);
+  const triPositions = bonds.reduce((a,b,i) => b==='triple' ? [...a,i+1] : a, []);
+
+  const subEntries = Object.entries(bSubs).filter(([,v]) => v && v !== 'none');
+  const subText = buildSubstituentPrefix(subEntries, n);
+
+  let name = '', hint = '', series = '';
+
+  if (n === 1 && (dblPositions.length || triPositions.length)) {
+    document.getElementById('iupac-name-display').textContent = 'Invalid';
+    document.getElementById('iupac-name-hint').textContent = 'A single carbon cannot have a double or triple bond.';
+    document.getElementById('builder-series').innerHTML = '';
+    return;
+  }
+
+  if (fg === 'none' && !dblPositions.length && !triPositions.length) {
+    // ── ALKANE ──
+    name = subText + prefix + 'ane';
+    series = `<span>Homologous series:</span> Alkanes (CₙH₂ₙ₊₂) — saturated, substitution reactions`;
+    hint  = `${n}C, all single bonds → ${name}`;
+
+  } else if (fg === 'none' && dblPositions.length && !triPositions.length) {
+    // ── ALKENE ──
+    if (dblPositions.length === 1) {
+      // Need locant when n >= 4 (but-1-ene, pent-2-ene etc.)
+      // Format: prefix + '-' + locant + '-' + 'ene'  e.g. But-1-ene
+      // For n<=3 no locant needed: propene, ethene
+      const locant = n >= 4 ? `-${dblPositions[0]}-` : '';
+      name = subText + prefix + locant + 'ene';
+    } else {
+      // diene etc: Buta-1,3-diene — note 'a' inserted before locant for polyynes
+      name = subText + prefix + 'a-' + dblPositions.join(',') + '-diene';
+    }
+    series = `<span>Homologous series:</span> Alkenes (CₙH₂ₙ) — unsaturated, addition reactions`;
+    hint  = `C=C double bond at C${dblPositions[0]} → ${name}`;
+
+  } else if (fg === 'none' && triPositions.length && !dblPositions.length) {
+    // ── ALKYNE ──
+    const locant = n >= 4 ? `-${triPositions[0]}-` : '';
+    name = subText + prefix + locant + 'yne';
+    series = `<span>Homologous series:</span> Alkynes (CₙH₂ₙ₋₂) — unsaturated, addition reactions`;
+    hint  = `C≡C triple bond at C${triPositions[0]} → ${name}`;
+
+  } else if (fg === 'alcohol') {
+    // ── ALCOHOL ──
+    // -ol suffix: drop terminal 'e' from parent → prefix+'an'+locant+'ol'
+    // e.g. Eth+an+ol=Ethanol, Prop+an-2+ol=Propan-2-ol, But+an-2+ol=Butan-2-ol
+    const hydroxyEntry = subEntries.find(([,v]) => v === 'hydroxy');
+    const pos = hydroxyEntry ? parseInt(hydroxyEntry[0]) + 1 : n;
+    const subNoHydroxy = buildSubstituentPrefix(subEntries.filter(([,v]) => v !== 'hydroxy'), n);
+    const locant = n >= 3 ? `-${pos}-` : '';
+    if (dblPositions.length) {
+      // e.g. Prop-2-en-1-ol
+      name = subNoHydroxy + prefix + `an-${dblPositions[0]}-en-${pos}-ol`;
+    } else {
+      // Methanol, Ethanol, Propan-2-ol, Butan-2-ol
+      name = subNoHydroxy + prefix + 'an' + locant + 'ol';
+    }
+    series = `<span>Functional group:</span> Alcohol (–OH) — suffix <b>-ol</b>`;
+    hint  = `–OH at C${pos} → ${name}`;
+
+  } else if (fg === 'aldehyde') {
+    // ── ALDEHYDE ──
+    // -al suffix: drop 'e' → prefix+'an'+'al'
+    // Methanal, Ethanal, Propanal, Butanal
+    name = subText + prefix + 'anal';
+    // Exception: 'Methanal' not 'Methananal' — for n=1 prefix is 'Meth' → 'Methanal' ✓
+    series = `<span>Functional group:</span> Aldehyde (–CHO) — suffix <b>-al</b>`;
+    hint  = `–CHO at C1 (terminal) → ${name}`;
+
+  } else if (fg === 'ketone') {
+    // ── KETONE ──
+    // -one suffix: drop 'e' → prefix+'an'+locant+'one'
+    // Propanone (n=3, pos=2), Butan-2-one (n=4, pos=2), Pentan-3-one (n=5, pos=3)
+    const kpos = n <= 4 ? 2 : Math.ceil(n / 2);
+    const locant = n >= 4 ? `-${kpos}-` : '';
+    name = subText + prefix + 'an' + locant + 'one';
+    series = `<span>Functional group:</span> Ketone (C=O) — suffix <b>-one</b>`;
+    hint  = `C=O at C${kpos} → ${name}`;
+
+  } else if (fg === 'acid') {
+    // ── CARBOXYLIC ACID ──
+    // -oic acid: drop 'e' → prefix+'an'+'oic acid'
+    // Methanoic acid, Ethanoic acid, Propanoic acid, Butanoic acid
+    name = subText + prefix + 'anoic acid';
+    series = `<span>Functional group:</span> Carboxylic acid (–COOH) — suffix <b>-oic acid</b>`;
+    hint  = `–COOH at C1 → ${name}`;
+
+  } else if (fg.startsWith('halo')) {
+    // ── HALOALKANE ──
+    // Format: {locant}-{haloname}{parent}ane  e.g. Chloromethane, 2-Chloropropane
+    const haloMap = {haloF:'fluoro', haloCl:'chloro', haloBr:'bromo', haloI:'iodo'};
+    const hname = haloMap[fg];
+    // Check if same halogen already a substituent at a position
+    const haloSub = subEntries.find(([,v]) => v === fg.replace('halo','') + 'o' || v === (fg==='haloCl'?'chloro':fg==='haloBr'?'bromo':fg==='haloF'?'fluoro':'iodo'));
+    if (haloSub) {
+      // Already handled by substituent prefix
+      name = subText + prefix + 'ane';
+    } else {
+      // FG = halo on last carbon (terminal)
+      const pos = n;
+      const locant = n >= 3 ? `${pos}-` : '';
+      if (dblPositions.length) {
+        const hnameC2 = hname.charAt(0).toUpperCase() + hname.slice(1);
+        name = subText + locant + hnameC2 + prefix.toLowerCase() + `-${dblPositions[0]}-ene`;
+      } else {
+        // Capitalize: first letter upper
+        // Capitalize: if locant prefix exists (e.g. '3-'), capitalize after it
+        const hnameC = hname.charAt(0).toUpperCase() + hname.slice(1);
+        name = locant + hnameC + prefix.toLowerCase() + 'ane';
+      }
+    }
+    series = `<span>Functional group:</span> Haloalkane (${FG_LABELS[fg]}) — prefix <b>${hname}-</b>`;
+    hint  = `${FG_LABELS[fg]} on chain → ${name}`;
+  }
+
+  document.getElementById('iupac-name-display').textContent = name || '—';
+  document.getElementById('iupac-name-hint').textContent = hint;
+  document.getElementById('builder-series').innerHTML = series;
+}
+
+function buildSubstituentPrefix(entries, chainLen) {
+  if (!entries.length) return '';
+  // Group by sub type
+  const groups = {};
+  entries.forEach(([pos, type]) => {
+    if (!groups[type]) groups[type] = [];
+    groups[type].push(parseInt(pos)+1); // 1-indexed
+  });
+  const multipliers = ['','','di','tri','tetra'];
+  let parts = [];
+  Object.keys(groups).sort().forEach(type => {
+    const positions = groups[type].sort((a,b)=>a-b);
+    const mult = multipliers[positions.length] || '';
+    const subName = {methyl:'methyl',ethyl:'ethyl',chloro:'chloro',bromo:'bromo',hydroxy:'hydroxy'}[type] || type;
+    parts.push(`${positions.join(',')}-${mult}${subName}`);
+  });
+  return parts.join('-') + '-';
+}
+
+function getFirstSubLocant(entries) {
+  if (!entries.length) return '';
+  return parseInt(entries[0][0]) + 1;
+}
+
+function rebuildName() {
+  if (bChain.length) {
+    // Update last fg
+    bChain[bChain.length-1].fg = document.getElementById('b-funcGroup').value;
+    renderBuilder();
+    buildIUPAC();
+  }
+}
+
+// Preset molecules
+const PRESETS = {
+  ethane:        { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'}], subs:{}, fg:'none' },
+  propene:       { chain:[{bond:'single',fg:'none'},{bond:'double',fg:'none'},{bond:'single',fg:'none'}], subs:{}, fg:'none' },
+  ethyne:        { chain:[{bond:'single',fg:'none'},{bond:'triple',fg:'none'}], subs:{}, fg:'none' },
+  ethanol:       { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'}], subs:{}, fg:'alcohol' },
+  propan2ol:     { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'},{bond:'single',fg:'none'}], subs:{1:'hydroxy'}, fg:'alcohol' },
+  ethanal:       { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'}], subs:{}, fg:'aldehyde' },
+  propanone:     { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'},{bond:'single',fg:'none'}], subs:{}, fg:'ketone' },
+  ethanoicacid:  { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'}], subs:{}, fg:'acid' },
+  chloroethane:  { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'}], subs:{}, fg:'haloCl' },
+  '2methylpropane': { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'},{bond:'single',fg:'none'}], subs:{1:'methyl'}, fg:'none' },
+  but2ene:       { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'},{bond:'double',fg:'none'},{bond:'single',fg:'none'}], subs:{}, fg:'none' },
+  but2yne:       { chain:[{bond:'single',fg:'none'},{bond:'single',fg:'none'},{bond:'triple',fg:'none'},{bond:'single',fg:'none'}], subs:{}, fg:'none' },
+};
+
+function loadPreset(key) {
+  const p = PRESETS[key];
+  if (!p) return;
+  bChain = p.chain.map(c => ({...c}));
+  bSubs  = {...p.subs};
+  document.getElementById('b-funcGroup').value = p.fg;
+  // set bond button to single by default
+  setBond('single');
+  updateSubPosSelect();
+  renderBuilder();
+  buildIUPAC();
 }
 
 // ============================================================
